@@ -1,12 +1,13 @@
 <div align="center">
-  <a href="" rel="noopener noreferrer" target="_blank">
-    <img src="" alt="logo readme">
+  <a href="https://github.com/bastean" rel="noopener noreferrer" target="_blank">
+    <!-- <img src="https://raw.githubusercontent.com/bastean/codexts/main/docs/readme/logo-readme.png" alt="logo readme"> -->
+    <img src="docs/readme/logo-readme.png" alt="logo readme">
   </a>
 </div>
 
 ---
 
-> Coding Conventions - Base
+> Example project applying Hexagonal Architecture, Domain-Driven Design (DDD), Command Query Responsibility Segregation (CQRS), Behavior-Driven Development (BDD), Continuous Integration (CI) and more... in TypeScript
 
 ## Run
 
@@ -21,28 +22,28 @@ Clone the repository
 - HTTPS
 
   ```bash
-  git clone https://github.com/bastean/coding-conventions.git
+  git clone https://github.com/bastean/codexts.git
   ```
 
 - SSH
 
   ```bash
-  git clone git@github.com:bastean/coding-conventions.git
+  git clone git@github.com:bastean/codexts.git
   ```
 
 Go to the repository directory
 
 ```bash
-cd coding-conventions/
+cd codexts/
 ```
 
-Install Dependencies
+Initialize
 
 ```bash
-npm i
+npm run init
 ```
 
-Start server
+Start
 
 ```bash
 npm start
@@ -50,4 +51,4 @@ npm start
 
 ## License
 
-- [MIT](./LICENSE)
+- [MIT](LICENSE)

@@ -1,9 +1,9 @@
-import { CustomerRegister } from 'coding-conventions-contexts-ecommerce/customer/application/Register/CustomerRegister';
-import { CustomerRegisterCommandHandler } from 'coding-conventions-contexts-ecommerce/customer/application/Register/CustomerRegisterCommandHandler';
-import { CustomerAlreadyExistError } from 'coding-conventions-contexts-ecommerce/customer/domain/errors/CustomerAlreadyExistError';
-import { CustomerUsernameAlphanumericError } from 'coding-conventions-contexts-ecommerce/customer/domain/valueObjects/CustomerUsernameAlphanumericError';
-import { CustomerUsernameLengthError } from 'coding-conventions-contexts-ecommerce/customer/domain/valueObjects/CustomerUsernameLengthError';
-import { InvalidValueError } from 'coding-conventions-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
+import { CustomerRegister } from 'codexts-contexts-ecommerce/customer/application/Register/CustomerRegister';
+import { CustomerRegisterCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Register/CustomerRegisterCommandHandler';
+import { CustomerAlreadyExistError } from 'codexts-contexts-ecommerce/customer/domain/errors/CustomerAlreadyExistError';
+import { CustomerUsernameAlphanumericError } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerUsernameAlphanumericError';
+import { CustomerUsernameLengthError } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerUsernameLengthError';
+import { InvalidValueError } from 'codexts-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
 
 import { CustomerRepositoryMock } from '../../__mocks__/persistence/CustomerRepositoryMock';
 import { CustomerMother } from '../../domain/aggregate/CustomerMother';

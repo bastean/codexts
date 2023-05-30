@@ -1,4 +1,4 @@
-import { CustomerEmail } from 'coding-conventions-contexts-ecommerce/customer/domain/valueObjects/CustomerEmail';
+import { CustomerEmail } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerEmail';
 
 import { EmailMother } from '../../../shared/domain/valueObjects/EmailMother';
 

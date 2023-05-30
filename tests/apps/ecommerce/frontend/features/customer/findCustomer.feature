@@ -1,6 +1,6 @@
 Feature: Find a Customer account
 
-  Scenario: BeforeAll
+  Scenario: Before All
     Given I am on "/" page
     Then I fill the "Username" with "TestingFind"
     * I fill the "Email" with "testing@find.com"
@@ -28,7 +28,7 @@ Feature: Find a Customer account
     * I click the "Find" button
     And I see "Please, check invalid values" notification
 
-  Scenario: AfterAll
+  Scenario: After All
     Given I am on "/" page
     Then I click the "DELETE" tab
     * I fill the "Email" with "testing@find.com"

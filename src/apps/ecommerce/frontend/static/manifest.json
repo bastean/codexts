@@ -1,10 +1,10 @@
 {
-	"name": "Coding Conventions Frontend",
-	"short_name": "Frontend",
+	"name": "codexts",
+	"short_name": "codexts",
 	"version": "0.0.1",
-	"description": "Coding Conventions - Frontend",
+	"description": "codexts Frontend",
 	"author": "Bastean <bastean@pm.me>",
-	"homepage_url": "https://github.com/bastean/coding-conventions#readme",
+	"homepage_url": "https://github.com/bastean/codexts#readme",
 	"start_url": ".",
 	"display": "standalone",
 	"orientation": "portrait-primary",
@@ -12,13 +12,13 @@
 	"theme_color": "#111111",
 	"icons": [
 		{
-			"src": "./pwa-any.png",
+			"src": "./assets/pwa-any.png",
 			"type": "image/png",
 			"sizes": "512x512",
 			"purpose": "any"
 		},
 		{
-			"src": "./pwa-maskable.png",
+			"src": "./assets/pwa-maskable.png",
 			"type": "image/png",
 			"sizes": "512x512",
 			"purpose": "maskable"

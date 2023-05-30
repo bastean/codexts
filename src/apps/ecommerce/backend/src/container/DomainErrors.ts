@@ -1,6 +1,6 @@
-import { AlreadyExistError } from 'coding-conventions-contexts-ecommerce/shared/domain/errors/AlreadyExistError';
-import { NotExistError } from 'coding-conventions-contexts-ecommerce/shared/domain/errors/NotExistError';
-import { InvalidValueError } from 'coding-conventions-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
+import { AlreadyExistError } from 'codexts-contexts-ecommerce/shared/domain/errors/AlreadyExistError';
+import { NotExistError } from 'codexts-contexts-ecommerce/shared/domain/errors/NotExistError';
+import { InvalidValueError } from 'codexts-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
 import httpStatus from 'http-status';
 
 export const DomainErrors = [

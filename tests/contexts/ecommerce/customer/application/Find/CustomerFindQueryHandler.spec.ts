@@ -1,8 +1,8 @@
-import { CustomerFind } from 'coding-conventions-contexts-ecommerce/customer/application/Find/CustomerFind';
-import { CustomerFindQueryHandler } from 'coding-conventions-contexts-ecommerce/customer/application/Find/CustomerFindQueryHandler';
-import { CustomerFindResponse } from 'coding-conventions-contexts-ecommerce/customer/application/Find/CustomerFindResponse';
-import { CustomerNotExistError } from 'coding-conventions-contexts-ecommerce/customer/domain/errors/CustomerNotExistError';
-import { InvalidValueError } from 'coding-conventions-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
+import { CustomerFind } from 'codexts-contexts-ecommerce/customer/application/Find/CustomerFind';
+import { CustomerFindQueryHandler } from 'codexts-contexts-ecommerce/customer/application/Find/CustomerFindQueryHandler';
+import { CustomerFindResponse } from 'codexts-contexts-ecommerce/customer/application/Find/CustomerFindResponse';
+import { CustomerNotExistError } from 'codexts-contexts-ecommerce/customer/domain/errors/CustomerNotExistError';
+import { InvalidValueError } from 'codexts-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
 
 import { CustomerRepositoryMock } from '../../__mocks__/persistence/CustomerRepositoryMock';
 import { CustomerEmailMother } from '../../domain/valueObjects/CustomerEmailMother';

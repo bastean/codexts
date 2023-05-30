@@ -1,3 +1,3 @@
-import { EcommerceConfig } from 'coding-conventions-contexts-ecommerce/shared/infrastructure/config/EcommerceConfig';
+import { EcommerceConfig } from 'codexts-contexts-ecommerce/shared/infrastructure/config/EcommerceConfig';
 
 export const Config = EcommerceConfig;

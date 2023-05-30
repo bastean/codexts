@@ -1,6 +1,6 @@
-import { CustomerDelete } from 'coding-conventions-contexts-ecommerce/customer/application/Delete/CustomerDelete';
-import { CustomerDeleteCommandHandler } from 'coding-conventions-contexts-ecommerce/customer/application/Delete/CustomerDeleteCommandHandler';
-import { InvalidValueError } from 'coding-conventions-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
+import { CustomerDelete } from 'codexts-contexts-ecommerce/customer/application/Delete/CustomerDelete';
+import { CustomerDeleteCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Delete/CustomerDeleteCommandHandler';
+import { InvalidValueError } from 'codexts-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
 
 import { CustomerRepositoryMock } from '../../__mocks__/persistence/CustomerRepositoryMock';
 import { CustomerIdMother } from '../../domain/valueObjects/CustomerIdMother';

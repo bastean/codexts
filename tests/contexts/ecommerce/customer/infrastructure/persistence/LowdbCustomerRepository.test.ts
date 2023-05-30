@@ -1,11 +1,11 @@
 import { unlinkSync } from 'fs';
 
-import { LowdbCustomerRepository } from 'coding-conventions-contexts-ecommerce/customer/infrastructure/persistence/lowdb/LowdbCustomerRepository';
+import { LowdbCustomerRepository } from 'codexts-contexts-ecommerce/customer/infrastructure/persistence/lowdb/LowdbCustomerRepository';
 
 import { CustomerMother } from '../../domain/aggregate/CustomerMother';
 import { CustomerEmailMother } from '../../domain/valueObjects/CustomerEmailMother';
 
-import type { CustomerRepository } from 'coding-conventions-contexts-ecommerce/customer/domain/repository/CustomerRepository';
+import type { CustomerRepository } from 'codexts-contexts-ecommerce/customer/domain/repository/CustomerRepository';
 
 const dbPath = `${process.cwd()}/ignore/lowdb`;
 const dbName = 'test_db';

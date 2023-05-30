@@ -1,7 +1,7 @@
 import { CustomerIdMother } from '../../domain/valueObjects/CustomerIdMother';
 
-import type { CustomerDeleteCommand } from 'coding-conventions-contexts-ecommerce/customer/application/Delete/CustomerDeleteCommand';
-import type { CustomerId } from 'coding-conventions-contexts-ecommerce/customer/domain/valueObjects/CustomerId';
+import type { CustomerDeleteCommand } from 'codexts-contexts-ecommerce/customer/application/Delete/CustomerDeleteCommand';
+import type { CustomerId } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerId';
 
 export class CustomerDeleteCommandMother {
 	public static create(id: CustomerId): CustomerDeleteCommand {

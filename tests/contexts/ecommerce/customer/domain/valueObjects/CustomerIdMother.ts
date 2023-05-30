@@ -1,4 +1,4 @@
-import { CustomerId } from 'coding-conventions-contexts-ecommerce/customer/domain/valueObjects/CustomerId';
+import { CustomerId } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerId';
 
 import { UuidMother } from '../../../shared/domain/valueObjects/UuidMother';
 

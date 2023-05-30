@@ -1,6 +1,6 @@
 import { Given, Then, AfterAll, BeforeAll, setDefaultTimeout } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { EcommerceConfig } from 'coding-conventions-contexts-ecommerce/shared/infrastructure/config/EcommerceConfig';
+import { EcommerceConfig } from 'codexts-contexts-ecommerce/shared/infrastructure/config/EcommerceConfig';
 import { chromium } from 'playwright';
 
 import type { Browser, BrowserContext, Page } from 'playwright';

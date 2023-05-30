@@ -1,17 +1,17 @@
 {
 	"private": true,
-	"name": "coding-conventions-contexts-ecommerce",
+	"name": "codexts-contexts-ecommerce",
 	"version": "0.0.1",
-	"description": "Coding Conventions - Contexts Ecommerce",
+	"description": "codexts Contexts Ecommerce",
 	"author": "Bastean <bastean@pm.me>",
 	"license": "MIT",
-	"homepage": "https://github.com/bastean/coding-conventions#readme",
+	"homepage": "https://github.com/bastean/codexts#readme",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/bastean/coding-conventions.git"
+		"url": "https://github.com/bastean/codexts.git"
 	},
 	"bugs": {
-		"url": "https://github.com/bastean/coding-conventions/issues"
+		"url": "https://github.com/bastean/codexts/issues"
 	},
 	"engines": {
 		"node": ">=18",

@@ -1,6 +1,6 @@
 import { Given, Then, BeforeAll, AfterAll } from '@cucumber/cucumber';
 import { request, expect } from '@playwright/test';
-import { EcommerceConfig } from 'coding-conventions-contexts-ecommerce/shared/infrastructure/config/EcommerceConfig';
+import { EcommerceConfig } from 'codexts-contexts-ecommerce/shared/infrastructure/config/EcommerceConfig';
 
 import type { APIResponse, APIRequestContext } from '@playwright/test';
 

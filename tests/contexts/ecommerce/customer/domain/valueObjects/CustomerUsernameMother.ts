@@ -1,4 +1,4 @@
-import { CustomerUsername } from 'coding-conventions-contexts-ecommerce/customer/domain/valueObjects/CustomerUsername';
+import { CustomerUsername } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerUsername';
 
 import { WordMother } from '../../../shared/domain/valueObjects/WordMother';
 

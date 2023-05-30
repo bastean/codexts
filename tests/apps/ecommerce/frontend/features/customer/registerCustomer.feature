@@ -14,7 +14,7 @@ Feature: Register a new Customer account
     * I click the "Register" button
     And I see "Please, check invalid values" notification
 
-  Scenario: AfterAll
+  Scenario: After All
     Given I am on "/" page
     Then I click the "DELETE" tab
     * I fill the "Email" with "testing@register.com"

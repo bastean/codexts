@@ -2,10 +2,10 @@ import { CustomerEmailMother } from '../../domain/valueObjects/CustomerEmailMoth
 import { CustomerIdMother } from '../../domain/valueObjects/CustomerIdMother';
 import { CustomerUsernameMother } from '../../domain/valueObjects/CustomerUsernameMother';
 
-import type { CustomerRegisterCommand } from 'coding-conventions-contexts-ecommerce/customer/application/Register/CustomerRegisterCommand';
-import type { CustomerEmail } from 'coding-conventions-contexts-ecommerce/customer/domain/valueObjects/CustomerEmail';
-import type { CustomerId } from 'coding-conventions-contexts-ecommerce/customer/domain/valueObjects/CustomerId';
-import type { CustomerUsername } from 'coding-conventions-contexts-ecommerce/customer/domain/valueObjects/CustomerUsername';
+import type { CustomerRegisterCommand } from 'codexts-contexts-ecommerce/customer/application/Register/CustomerRegisterCommand';
+import type { CustomerEmail } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerEmail';
+import type { CustomerId } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerId';
+import type { CustomerUsername } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerUsername';
 
 export class CustomerRegisterCommandMother {
 	public static create(

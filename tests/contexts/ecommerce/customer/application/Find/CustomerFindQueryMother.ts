@@ -1,7 +1,7 @@
 import { CustomerEmailMother } from '../../domain/valueObjects/CustomerEmailMother';
 
-import type { CustomerFindQuery } from 'coding-conventions-contexts-ecommerce/customer/application/Find/CustomerFindQuery';
-import type { CustomerEmail } from 'coding-conventions-contexts-ecommerce/customer/domain/valueObjects/CustomerEmail';
+import type { CustomerFindQuery } from 'codexts-contexts-ecommerce/customer/application/Find/CustomerFindQuery';
+import type { CustomerEmail } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerEmail';
 
 export class CustomerFindQueryMother {
 	public static create(email: CustomerEmail): CustomerFindQuery {

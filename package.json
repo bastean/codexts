@@ -1,17 +1,17 @@
 {
 	"private": true,
-	"name": "coding-conventions-root",
+	"name": "codexts-root",
 	"version": "0.0.1",
-	"description": "Coding Conventions - Root",
+	"description": "codexts Root",
 	"author": "Bastean <bastean@pm.me>",
 	"license": "MIT",
-	"homepage": "https://github.com/bastean/coding-conventions#readme",
+	"homepage": "https://github.com/bastean/codexts#readme",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/bastean/coding-conventions.git"
+		"url": "https://github.com/bastean/codexts.git"
 	},
 	"bugs": {
-		"url": "https://github.com/bastean/coding-conventions/issues"
+		"url": "https://github.com/bastean/codexts/issues"
 	},
 	"engines": {
 		"node": ">=18",
@@ -29,12 +29,12 @@
 		"genesis": "git clean -e src/**/.env* -fdx && git reset --hard HEAD && npm run init",
 		"upgrade:check": "npx ncu --root -ws -x git-commit-msg-linter",
 		"upgrade": "node scripts/upgrade",
-		"lint:check": "tsc --noEmit && npm run check -w coding-conventions-frontend && eslint . && prettier --check .",
+		"lint:check": "tsc --noEmit && npm run check -w codexts-frontend && eslint . && prettier --check .",
 		"lint:cache": "eslint --cache --cache-location=./node_modules/.cache/eslint/.eslint-cache --fix . && prettier --ignore-unknown --cache --write .",
 		"lint": "eslint --fix . && prettier --ignore-unknown --write .",
 		"build": "npm run build -ws --if-present",
-		"start:backend": "npm run start -w coding-conventions-backend",
-		"start:frontend": "npm run dev -w coding-conventions-frontend",
+		"start:backend": "npm run start -w codexts-backend",
+		"start:frontend": "npm run dev -w codexts-frontend",
 		"start": "node -e \"console.clear()\" && concurrently -k -n \"BACKEND,FRONTEND\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run start:backend\" \"npm run start:frontend\""
 	},
 	"lint-staged": {

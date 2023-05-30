@@ -32,7 +32,7 @@ try {
 	await $$`npm run lint:check`;
 
 	console.log('\n> Running Tests\n');
-	await $$`npm run test -w coding-conventions-tests`;
+	await $$`npm run test -w codexts-tests`;
 
 	console.log('\n> Commit changes\n');
 	await $({

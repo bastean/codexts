@@ -1,11 +1,11 @@
 import { asClass, createContainer, InjectionMode } from 'awilix';
-import { CustomerDelete } from 'coding-conventions-contexts-ecommerce/customer/application/Delete/CustomerDelete';
-import { CustomerDeleteCommandHandler } from 'coding-conventions-contexts-ecommerce/customer/application/Delete/CustomerDeleteCommandHandler';
-import { CustomerFind } from 'coding-conventions-contexts-ecommerce/customer/application/Find/CustomerFind';
-import { CustomerFindQueryHandler } from 'coding-conventions-contexts-ecommerce/customer/application/Find/CustomerFindQueryHandler';
-import { CustomerRegister } from 'coding-conventions-contexts-ecommerce/customer/application/Register/CustomerRegister';
-import { CustomerRegisterCommandHandler } from 'coding-conventions-contexts-ecommerce/customer/application/Register/CustomerRegisterCommandHandler';
-import { LowdbCustomerRepository } from 'coding-conventions-contexts-ecommerce/customer/infrastructure/persistence/lowdb/LowdbCustomerRepository';
+import { CustomerDelete } from 'codexts-contexts-ecommerce/customer/application/Delete/CustomerDelete';
+import { CustomerDeleteCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Delete/CustomerDeleteCommandHandler';
+import { CustomerFind } from 'codexts-contexts-ecommerce/customer/application/Find/CustomerFind';
+import { CustomerFindQueryHandler } from 'codexts-contexts-ecommerce/customer/application/Find/CustomerFindQueryHandler';
+import { CustomerRegister } from 'codexts-contexts-ecommerce/customer/application/Register/CustomerRegister';
+import { CustomerRegisterCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Register/CustomerRegisterCommandHandler';
+import { LowdbCustomerRepository } from 'codexts-contexts-ecommerce/customer/infrastructure/persistence/lowdb/LowdbCustomerRepository';
 
 const container = createContainer({
 	injectionMode: InjectionMode.CLASSIC

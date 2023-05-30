@@ -1,17 +1,17 @@
 {
 	"private": true,
-	"name": "coding-conventions-tests",
+	"name": "codexts-tests",
 	"version": "0.0.1",
-	"description": "Coding Conventions - Tests",
+	"description": "codexts Tests",
 	"author": "Bastean <bastean@pm.me>",
 	"license": "MIT",
-	"homepage": "https://github.com/bastean/coding-conventions#readme",
+	"homepage": "https://github.com/bastean/codexts#readme",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/bastean/coding-conventions.git"
+		"url": "https://github.com/bastean/codexts.git"
 	},
 	"bugs": {
-		"url": "https://github.com/bastean/coding-conventions/issues"
+		"url": "https://github.com/bastean/codexts/issues"
 	},
 	"engines": {
 		"node": ">=18",
@@ -21,9 +21,9 @@
 	"scripts": {
 		"prepare:jest": "env-cmd -f jest.run.env --use-shell jest --passWithNoTests --noStackTrace -c",
 		"prepare:cucumber": "env-cmd -f cucumber.run.env --use-shell cucumber-js -p",
-		"prepare:backend:start": "npm run start -w coding-conventions-backend",
+		"prepare:backend:start": "npm run start -w codexts-backend",
 		"prepare:backend:test": "npm run prepare:cucumber backend",
-		"prepare:frontend:start": "npm run dev -w coding-conventions-frontend",
+		"prepare:frontend:start": "npm run dev -w codexts-frontend",
 		"prepare:frontend:test": "npm run prepare:cucumber frontend",
 		"test:acceptance:backend": "start-test prepare:backend:start http://localhost:5172 prepare:backend:test",
 		"test:acceptance:frontend": "start-test prepare:backend:start http://localhost:5172 prepare:frontend:start http://localhost:5173 prepare:frontend:test",

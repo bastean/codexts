@@ -1,0 +1,72 @@
+{
+	"private": true,
+	"name": "coding-conventions-root",
+	"version": "0.0.1",
+	"description": "Coding Conventions - Root",
+	"author": "Bastean <bastean@pm.me>",
+	"license": "MIT",
+	"homepage": "https://github.com/bastean/coding-conventions#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bastean/coding-conventions.git"
+	},
+	"bugs": {
+		"url": "https://github.com/bastean/coding-conventions/issues"
+	},
+	"engines": {
+		"node": ">=18",
+		"npm": ">=9"
+	},
+	"workspaces": [
+		"src/contexts/*",
+		"src/apps/*/*",
+		"tests"
+	],
+	"type": "module",
+	"scripts": {
+		"init": "npm ci",
+		"prepare": "git init && husky install",
+		"genesis": "git clean -e src/**/.env* -fdx && git reset --hard HEAD && npm run init",
+		"upgrade:check": "npx ncu --root -ws -x git-commit-msg-linter",
+		"upgrade": "node scripts/upgrade",
+		"lint:check": "tsc --noEmit && npm run check -w coding-conventions-frontend && eslint . && prettier --check .",
+		"lint:cache": "eslint --cache --cache-location=./node_modules/.cache/eslint/.eslint-cache --fix . && prettier --ignore-unknown --cache --write .",
+		"lint": "eslint --fix . && prettier --ignore-unknown --write .",
+		"build": "npm run build -ws --if-present",
+		"start:backend": "npm run start -w coding-conventions-backend",
+		"start:frontend": "npm run dev -w coding-conventions-frontend",
+		"start": "node -e \"console.clear()\" && concurrently -k -n \"BACKEND,FRONTEND\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run start:backend\" \"npm run start:frontend\""
+	},
+	"lint-staged": {
+		"**/*.{ts,svelte}": "eslint --fix",
+		"**/*": "prettier --ignore-unknown --write"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "5.59.8",
+		"@typescript-eslint/parser": "5.59.8",
+		"concurrently": "8.0.1",
+		"eslint": "8.41.0",
+		"eslint-config-airbnb-base": "15.0.0",
+		"eslint-config-airbnb-typescript": "17.0.0",
+		"eslint-config-prettier": "8.8.0",
+		"eslint-import-resolver-typescript": "3.5.5",
+		"eslint-plugin-check-file": "2.3.0",
+		"eslint-plugin-hexagonal-architecture": "1.0.3",
+		"eslint-plugin-import": "2.27.5",
+		"eslint-plugin-jest": "27.2.1",
+		"eslint-plugin-no-secrets": "0.8.9",
+		"eslint-plugin-playwright": "0.12.0",
+		"eslint-plugin-security": "1.7.1",
+		"eslint-plugin-svelte": "2.29.0",
+		"eslint-plugin-unused-imports": "2.0.0",
+		"execa": "7.1.1",
+		"git-commit-msg-linter": "4.8.3",
+		"husky": "8.0.3",
+		"lint-staged": "13.2.2",
+		"npm-check-updates": "16.10.12",
+		"prettier": "2.8.8",
+		"prettier-plugin-svelte": "2.10.1",
+		"prettier-plugin-tailwindcss": "0.3.0",
+		"typescript": "5.0.4"
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"name": "Coding Conventions Frontend",
+	"short_name": "Frontend",
+	"version": "0.0.1",
+	"description": "Coding Conventions - Frontend",
+	"author": "Bastean <bastean@pm.me>",
+	"homepage_url": "https://github.com/bastean/coding-conventions#readme",
+	"start_url": ".",
+	"display": "standalone",
+	"orientation": "portrait-primary",
+	"background_color": "#000000",
+	"theme_color": "#111111",
+	"icons": [
+		{
+			"src": "./pwa-any.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "any"
+		},
+		{
+			"src": "./pwa-maskable.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "maskable"
+		}
+	]
+}

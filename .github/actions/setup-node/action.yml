@@ -1,0 +1,25 @@
+name: Setup Node
+
+description: Setup Node & Caching Dependencies
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: 'package.json'
+        cache: npm
+
+    - name: Cache 'node_modules'
+      uses: actions/cache@v3
+      id: node_modules
+      with:
+        key: node-cache-${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json') }}-${{ hashFiles('.github/actions/setup-node/action.yml') }}
+        path: 'node_modules'
+
+    - name: Install Dependencies
+      if: steps.node_modules.outputs.cache-hit != 'true'
+      shell: ${{ runner.os == 'Windows' && 'pwsh' || 'bash' }}
+      run: npm ci

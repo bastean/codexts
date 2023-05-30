@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		//* Language and Environment
+		"target": "es2020",
+
+		//* Modules
+		"module": "esnext",
+		"rootDir": ".",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+
+		//* Emit
+		"noEmit": true,
+
+		//* Interop Constraints
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": false,
+		"forceConsistentCasingInFileNames": true,
+
+		//* Type Checking
+		"strict": true,
+		"noImplicitOverride": true,
+
+		//* Completeness
+		"skipLibCheck": true
+	},
+	"include": ["src/**/*.ts", "tests/**/*.ts"],
+	"exclude": ["node_modules", "**/*.config.ts"]
+}

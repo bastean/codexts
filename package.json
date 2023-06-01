@@ -1,6 +1,6 @@
 {
 	"private": true,
-	"name": "codexts-root",
+	"name": "codexts",
 	"version": "1.0.0",
 	"description": "codexts Root",
 	"author": "Bastean <bastean@pm.me>",
@@ -34,6 +34,13 @@
 		"lint:cache": "eslint --cache --cache-location=./node_modules/.cache/eslint/.eslint-cache --fix . && prettier --ignore-unknown --cache --write .",
 		"lint": "eslint --fix . && prettier --ignore-unknown --write .",
 		"build": "npm run build -ws --if-present",
+		"release": "release-it -V",
+		"release:alpha": "npm run release -- --preRelease=alpha",
+		"release:beta": "npm run release -- --preRelease=beta",
+		"release:ci": "npm run release -- --ci",
+		"release:dry": "npm run release -- -d --no-git.requireCleanWorkingDir",
+		"release:version": "npm run release:dry -- --release-version",
+		"release:changelog": "npm run release:dry -- --changelog",
 		"start:backend": "npm run start -w codexts-backend",
 		"start:frontend": "npm run dev -w codexts-frontend",
 		"start": "node -e \"console.clear()\" && concurrently -k -n \"BACKEND,FRONTEND\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run start:backend\" \"npm run start:frontend\""
@@ -52,9 +59,48 @@
 			"@commitlint/config-conventional"
 		]
 	},
+	"release-it": {
+		"git": {
+			"requireBranch": "main",
+			"commitMessage": "chore(release): v${version}",
+			"tagAnnotation": "v${version}",
+			"tagName": "codexts ${version}"
+		},
+		"github": {
+			"release": true,
+			"releaseName": "v${version}"
+		},
+		"npm": {
+			"release": false
+		},
+		"plugins": {
+			"@release-it/conventional-changelog": {
+				"preset": "conventionalcommits",
+				"infile": "CHANGELOG.md",
+				"header": "# Changelog"
+			},
+			"@release-it-plugins/workspaces": {
+				"publish": false,
+				"additionalManifests": {
+					"versionUpdates": [
+						"src/**/manifest.json"
+					]
+				}
+			}
+		},
+		"hooks": {
+			"before:init": [
+				"npm run lint:check",
+				"npm test -w codexts-tests"
+			],
+			"after:release": "echo Successfully released ${name} v${version} to ${repo.repository}"
+		}
+	},
 	"devDependencies": {
 		"@commitlint/cli": "17.6.5",
 		"@commitlint/config-conventional": "17.6.5",
+		"@release-it-plugins/workspaces": "3.2.0",
+		"@release-it/conventional-changelog": "5.1.1",
 		"@typescript-eslint/eslint-plugin": "5.59.8",
 		"@typescript-eslint/parser": "5.59.8",
 		"commitizen": "4.3.0",
@@ -81,6 +127,7 @@
 		"prettier": "2.8.8",
 		"prettier-plugin-svelte": "2.10.1",
 		"prettier-plugin-tailwindcss": "0.3.0",
+		"release-it": "15.10.3",
 		"typescript": "5.0.4"
 	}
 }

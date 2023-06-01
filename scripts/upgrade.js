@@ -38,7 +38,7 @@ try {
 	await $({
 		stdio: 'inherit',
 		shell: true
-	})`git commit -am "chore(*): upgrade workspaces dependencies"`;
+	})`git commit -am "chore(deps): upgrade workspaces dependencies"`;
 
 	console.log('\n> Upgrade Completed!');
 } catch (error) {

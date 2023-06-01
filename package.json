@@ -27,7 +27,8 @@
 		"init": "npm ci",
 		"prepare": "git init && husky install",
 		"genesis": "git clean -e src/**/.env* -fdx && git reset --hard HEAD && npm run init",
-		"upgrade:check": "npx ncu --root -ws -x git-commit-msg-linter",
+		"commit": "cz",
+		"upgrade:check": "npx ncu --root -ws",
 		"upgrade": "node scripts/upgrade",
 		"lint:check": "tsc --noEmit && npm run check -w codexts-frontend && eslint . && prettier --check .",
 		"lint:cache": "eslint --cache --cache-location=./node_modules/.cache/eslint/.eslint-cache --fix . && prettier --ignore-unknown --cache --write .",
@@ -41,10 +42,24 @@
 		"**/*.{ts,svelte}": "eslint --fix",
 		"**/*": "prettier --ignore-unknown --write"
 	},
+	"config": {
+		"commitizen": {
+			"path": "cz-conventional-changelog"
+		}
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
 	"devDependencies": {
+		"@commitlint/cli": "17.6.5",
+		"@commitlint/config-conventional": "17.6.5",
 		"@typescript-eslint/eslint-plugin": "5.59.8",
 		"@typescript-eslint/parser": "5.59.8",
+		"commitizen": "4.3.0",
 		"concurrently": "8.0.1",
+		"cz-conventional-changelog": "3.3.0",
 		"eslint": "8.41.0",
 		"eslint-config-airbnb-base": "15.0.0",
 		"eslint-config-airbnb-typescript": "17.0.0",
@@ -60,7 +75,6 @@
 		"eslint-plugin-svelte": "2.29.0",
 		"eslint-plugin-unused-imports": "2.0.0",
 		"execa": "7.1.1",
-		"git-commit-msg-linter": "4.8.3",
 		"husky": "8.0.3",
 		"lint-staged": "13.2.2",
 		"npm-check-updates": "16.10.12",

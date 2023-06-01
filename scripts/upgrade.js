@@ -22,7 +22,7 @@ console.clear();
 
 try {
 	console.log('> Upgrading workspaces dependencies\n');
-	await $$`npx ncu --root -ws -u -x git-commit-msg-linter`;
+	await $$`npx ncu --root -ws -u`;
 
 	console.log('\n> Installing new versions\n');
 	unlinkSync('package-lock.json');

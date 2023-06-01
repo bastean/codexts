@@ -63,15 +63,15 @@
 		"git": {
 			"requireBranch": "main",
 			"commitMessage": "chore(release): v${version}",
-			"tagAnnotation": "v${version}",
-			"tagName": "codexts ${version}"
+			"tagAnnotation": "codexts ${version}"
 		},
 		"github": {
 			"release": true,
 			"releaseName": "v${version}"
 		},
 		"npm": {
-			"release": false
+			"publish": false,
+			"skipChecks": true
 		},
 		"plugins": {
 			"@release-it/conventional-changelog": {

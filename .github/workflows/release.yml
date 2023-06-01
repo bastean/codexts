@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      status:
+        type: choice
+        description: Status
+        options:
+          - alpha
+          - beta
+          - stable
+        default: stable
+      type:
+        type: choice
+        description: Type
+        options:
+          - patch
+          - minor
+          - major
+          - auto
+        default: auto
+      npm:
+        type: boolean
+        description: NPM Publish
+        default: false
+      dry:
+        type: boolean
+        description: Dry Release
+        default: false
+
+jobs:
+  Version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: ./.github/actions/setup-node
+      - name: Git User
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+      - name: NPM Credentials
+        if: github.event.inputs.npm == 'true'
+        run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STATUS_ARG: ${{ fromJSON('{"alpha":"--preRelease=alpha", "beta":"--preRelease=beta", "stable":""}')[github.event.inputs.status] }}
+          TYPE_ARG: ${{ fromJSON('{"patch":"--patch", "minor":"--minor", "major":"--major", "auto":""}')[github.event.inputs.type] }}
+          DRY_ARG: ${{ github.event.inputs.dry == 'true' && '-d' || '' }}
+        run: npm run release:ci -- $STATUS_ARG $TYPE_ARG $DRY_ARG

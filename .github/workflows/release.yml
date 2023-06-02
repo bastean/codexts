@@ -30,7 +30,7 @@ on:
         default: false
 
 jobs:
-  Version:
+  Generate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -39,16 +39,18 @@ jobs:
           fetch-depth: 0
       - name: Setup Node
         uses: ./.github/actions/setup-node
-      - name: Git User
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Init Git User
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      - name: NPM Credentials
+      - name: Init NPM Credentials
         if: github.event.inputs.npm == 'true'
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Release
+      - name: Generate Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           STATUS_ARG: ${{ fromJSON('{"alpha":"--preRelease=alpha", "beta":"--preRelease=beta", "stable":""}')[github.event.inputs.status] }}

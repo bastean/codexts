@@ -81,6 +81,7 @@
 			},
 			"@release-it-plugins/workspaces": {
 				"publish": false,
+				"skipChecks": true,
 				"additionalManifests": {
 					"versionUpdates": [
 						"src/**/manifest.json"

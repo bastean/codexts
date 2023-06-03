@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.1](https://github.com/bastean/codexts/compare/v1.2.0...v1.2.1) (2023-06-03)
+
+### Bug Fixes
+
+- **frontend:** replace deprecated daisyUI components ([918f771](https://github.com/bastean/codexts/commit/918f7711984d40bc1f842658cc884e7468787c3f))
+
 ## [1.2.0](https://github.com/bastean/codexts/compare/v1.1.1...v1.2.0) (2023-06-03)
 
 ### Features

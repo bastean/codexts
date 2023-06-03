@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0](https://github.com/bastean/codexts/compare/v1.1.1...v1.2.0) (2023-06-03)
+
+### Features
+
+- add linting before release ([a37652f](https://github.com/bastean/codexts/commit/a37652f33cecf8ea7d6697faa44cf6b0a6c031b2))
+
 ## [1.1.1](https://github.com/bastean/codexts/compare/v1.1.0...v1.1.1) (2023-06-02)
 
 ## [1.1.0](https://github.com/bastean/codexts/compare/v1.0.0...v1.1.0) (2023-06-01)

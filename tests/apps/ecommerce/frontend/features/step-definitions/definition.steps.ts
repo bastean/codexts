@@ -28,8 +28,8 @@ Then('the page title should be {string}', async (title: string) => {
 	await expect(page).toHaveTitle(title);
 });
 
-Then('I click the {string} tab', async (tab: string) => {
-	await page.locator(`input[data-title='${tab}']`).check();
+Then('I click the {string} tab', async (name: string) => {
+	await page.getByRole('radio', { name }).check();
 });
 
 Then('I fill the {string} with {string}', async (placeholder: string, value: string) => {

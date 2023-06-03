@@ -15,31 +15,31 @@
 	<div class="flex -translate-y-10 flex-col items-center gap-12">
 		<h1 class="text-center text-6xl font-black">Welcome</h1>
 
-		<form class="btn-group">
+		<form class="join join-horizontal">
 			<input
 				bind:group={currentChecked}
 				type="radio"
 				name="options"
-				data-title="REGISTER"
+				aria-label="REGISTER"
 				value="Register"
 				checked
-				class="btn"
+				class="join-item btn"
 			/>
 			<input
 				bind:group={currentChecked}
 				type="radio"
 				name="options"
-				data-title="FIND"
+				aria-label="FIND"
 				value="Find"
-				class="btn"
+				class="join-item btn"
 			/>
 			<input
 				bind:group={currentChecked}
 				type="radio"
 				name="options"
-				data-title="DELETE"
+				aria-label="DELETE"
 				value="Delete"
-				class="btn"
+				class="join-item btn"
 			/>
 		</form>
 

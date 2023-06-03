@@ -94,6 +94,11 @@
 				"npm run lint:check",
 				"npm test -w codexts-tests"
 			],
+			"before:release": [
+				"npm i",
+				"npm run lint",
+				"git add . --update"
+			],
 			"after:release": "echo Successfully released ${name} v${version} to ${repo.repository}"
 		}
 	},

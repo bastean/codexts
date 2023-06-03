@@ -1,35 +1,35 @@
 {
- "private": true,
- "name": "codexts-contexts-ecommerce",
- "version": "1.1.1",
- "description": "codexts Contexts Ecommerce",
- "author": "Bastean <bastean@pm.me>",
- "license": "MIT",
- "homepage": "https://github.com/bastean/codexts#readme",
- "repository": {
-  "type": "git",
-  "url": "https://github.com/bastean/codexts.git"
- },
- "bugs": {
-  "url": "https://github.com/bastean/codexts/issues"
- },
- "engines": {
-  "node": ">=18",
-  "npm": ">=9"
- },
- "type": "module",
- "dependencies": {
-  "convict": "6.2.4",
-  "convict-format-with-moment": "6.2.0",
-  "convict-format-with-validator": "6.2.0",
-  "lowdb": "6.0.1",
-  "validator": "13.9.0",
-  "winston": "3.9.0",
-  "winston-daily-rotate-file": "4.7.1"
- },
- "devDependencies": {
-  "@types/convict": "6.1.2",
-  "@types/convict-format-with-validator": "6.0.2",
-  "@types/validator": "13.7.17"
- }
+	"private": true,
+	"name": "codexts-contexts-ecommerce",
+	"version": "1.1.1",
+	"description": "codexts Contexts Ecommerce",
+	"author": "Bastean <bastean@pm.me>",
+	"license": "MIT",
+	"homepage": "https://github.com/bastean/codexts#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bastean/codexts.git"
+	},
+	"bugs": {
+		"url": "https://github.com/bastean/codexts/issues"
+	},
+	"engines": {
+		"node": ">=18",
+		"npm": ">=9"
+	},
+	"type": "module",
+	"dependencies": {
+		"convict": "6.2.4",
+		"convict-format-with-moment": "6.2.0",
+		"convict-format-with-validator": "6.2.0",
+		"lowdb": "6.0.1",
+		"validator": "13.9.0",
+		"winston": "3.9.0",
+		"winston-daily-rotate-file": "4.7.1"
+	},
+	"devDependencies": {
+		"@types/convict": "6.1.2",
+		"@types/convict-format-with-validator": "6.0.2",
+		"@types/validator": "13.7.17"
+	}
 }

@@ -8,8 +8,6 @@
 
 </div>
 
----
-
 <div align="center">
 
 <!-- [![logo readme](https://raw.githubusercontent.com/bastean/codexts/main/docs/readme/logo-readme.png)](https://github.com/bastean) -->

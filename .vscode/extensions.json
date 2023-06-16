@@ -9,6 +9,7 @@
 		"redhat.vscode-yaml",
 		"rohit-gohri.format-code-action",
 		"streetsidesoftware.code-spell-checker",
-		"svelte.svelte-vscode"
+		"svelte.svelte-vscode",
+		"hediet.vscode-drawio"
 	]
 }

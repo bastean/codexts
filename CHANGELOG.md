@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.5](https://github.com/bastean/codexts/compare/v1.2.4...v1.2.5) (2023-06-20)
+
+### Bug Fixes
+
+- change images resolution ([822df3e](https://github.com/bastean/codexts/commit/822df3ecb8b302bd66f02cda61d0e92dcab66285))
+- **deps:** upgrade workspaces dependencies ([59ec88b](https://github.com/bastean/codexts/commit/59ec88bd63beeb3f6f6ca545cc229b061563ebe4))
+
 ## [1.2.4](https://github.com/bastean/codexts/compare/v1.2.3...v1.2.4) (2023-06-16)
 
 ### Bug Fixes

@@ -1,3 +1,19 @@
+<h1 align="center">
+
+<!-- [![logo readme](https://raw.githubusercontent.com/bastean/codexts/main/docs/readme/logo-readme.png)](https://github.com/bastean) -->
+
+[![logo readme](docs/readme/logo-readme.png)](https://github.com/bastean)
+
+</h1>
+
+<div align="center">
+
+> Example project applying Hexagonal Architecture, Domain-Driven Design (DDD), Command Query Responsibility Segregation (CQRS), Behavior-Driven Development (BDD), Continuous Integration (CI) and more... in TypeScript
+
+</div>
+
+<br />
+
 <div align="center">
 
 [![license MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -7,16 +23,6 @@
 [![code style prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 </div>
-
-<div align="center">
-
-<!-- [![logo readme](https://raw.githubusercontent.com/bastean/codexts/main/docs/readme/logo-readme.png)](https://github.com/bastean) -->
-
-[![logo readme](docs/readme/logo-readme.png)](https://github.com/bastean)
-
-</div>
-
-> Example project applying Hexagonal Architecture, Domain-Driven Design (DDD), Command Query Responsibility Segregation (CQRS), Behavior-Driven Development (BDD), Continuous Integration (CI) and more... in TypeScript
 
 ## Run
 

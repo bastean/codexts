@@ -1,6 +1,7 @@
 <script lang="ts">
+	import CustomerEmailInput from '../module/CustomerEmailInput.svelte';
+
 	import Form from '$lib/components/dataInput/Form.svelte';
-	import CustomerEmailInput from '$lib/modules/costumer/CustomerEmailInput.svelte';
 	import { CustomerEmail, isCustomerEmailValid } from '$lib/stores/customer/CustomerEmail';
 	import { showErrorNotification } from '$lib/stores/notification/ErrorNotification';
 	import { showSuccessNotification } from '$lib/stores/notification/SuccessNotification';

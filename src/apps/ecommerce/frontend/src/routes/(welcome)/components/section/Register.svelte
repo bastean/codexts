@@ -1,7 +1,8 @@
 <script lang="ts">
+	import CustomerEmailInput from '../module/CustomerEmailInput.svelte';
+	import CustomerUsernameInput from '../module/CustomerUsernameInput.svelte';
+
 	import Form from '$lib/components/dataInput/Form.svelte';
-	import CustomerEmailInput from '$lib/modules/costumer/CustomerEmailInput.svelte';
-	import CustomerUsernameInput from '$lib/modules/costumer/CustomerUsernameInput.svelte';
 	import { Customer, isCustomerValid } from '$lib/stores/customer/Customer';
 	import { showErrorNotification } from '$lib/stores/notification/ErrorNotification';
 	import { showSuccessNotification } from '$lib/stores/notification/SuccessNotification';

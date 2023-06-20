@@ -1,8 +1,8 @@
 <script lang="ts">
-	import TechStack from '$lib/components/footers/TechStack.svelte';
-	import Delete from '$lib/sections/customer/Delete.svelte';
-	import Find from '$lib/sections/customer/Find.svelte';
-	import Register from '$lib/sections/customer/Register.svelte';
+	import TechStack from './components/footer/TechStack.svelte';
+	import Delete from './components/section/Delete.svelte';
+	import Find from './components/section/Find.svelte';
+	import Register from './components/section/Register.svelte';
 
 	let currentChecked = 'Register';
 </script>

@@ -26,37 +26,17 @@ Install required
 
 ### Locally
 
-Clone the repository
-
 - HTTPS
 
   ```bash
-  git clone https://github.com/bastean/codexts.git
+  git clone https://github.com/bastean/codexts.git && cd codexts/ && npm run init && npm start
   ```
 
 - SSH
 
   ```bash
-  git clone git@github.com:bastean/codexts.git
+  git clone git@github.com:bastean/codexts.git && cd codexts/ && npm run init && npm start
   ```
-
-Go to the repository directory
-
-```bash
-cd codexts/
-```
-
-Initialize
-
-```bash
-npm run init
-```
-
-Start
-
-```bash
-npm start
-```
 
 ## License
 

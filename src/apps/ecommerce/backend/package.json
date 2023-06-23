@@ -30,7 +30,7 @@
 		"express-rate-limit": "6.7.0",
 		"express-slow-down": "1.6.0",
 		"express-validator": "7.0.1",
-		"glob": "10.2.7",
+		"glob": "10.3.0",
 		"helmet": "7.0.0",
 		"http-status": "1.6.2",
 		"slash": "5.1.0",

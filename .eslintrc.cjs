@@ -128,7 +128,8 @@ module.exports = {
                   */
 				'import/no-mutable-exports': 'off',
 				'import/no-unresolved': 'off',
-				'import/extensions': 'off'
+				'import/extensions': 'off',
+				'import/no-duplicates': 'off'
 			}
 		},
 		{

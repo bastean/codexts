@@ -4,27 +4,17 @@
 
 	import Form from '$lib/components/dataInput/Form.svelte';
 	import { Customer, isCustomerValid } from '$lib/stores/customer/Customer';
-	import { showErrorNotification } from '$lib/stores/notification/ErrorNotification';
-	import { showSuccessNotification } from '$lib/stores/notification/SuccessNotification';
 	import { put } from '$lib/utils/HTTPClient';
 
-	const register = async () => {
-		if (isCustomerValid()) {
-			try {
-				await put('/public/customer', $Customer);
-				showSuccessNotification.set('Registration Successfully!');
-			} catch (error) {
-				const { response } = error as { response: { data: { message: string } } };
-				showErrorNotification.set(response.data.message);
-			}
-		} else {
-			showErrorNotification.set('Please, check invalid values');
-		}
+	const customerRegister = async () => {
+		await put('/public/customer', $Customer);
+		return 'Registration Successfully!';
 	};
 </script>
 
 <Form
-	handler={register}
+	isValid={isCustomerValid}
+	handler={customerRegister}
 	btnTitle="Register"
 >
 	<CustomerUsernameInput />

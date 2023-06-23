@@ -3,32 +3,23 @@
 
 	import Form from '$lib/components/dataInput/Form.svelte';
 	import { CustomerEmail, isCustomerEmailValid } from '$lib/stores/customer/CustomerEmail';
-	import { showErrorNotification } from '$lib/stores/notification/ErrorNotification';
 	import { post } from '$lib/utils/HTTPClient';
 
 	let CustomerData: { username: string; email: string };
 	let willShowModal = false;
 
-	const find = async () => {
-		if (isCustomerEmailValid()) {
-			try {
-				const { data } = (await post('/public/customer', { email: $CustomerEmail })) as {
-					data: { username: string; email: string };
-				};
-				CustomerData = data;
-				willShowModal = true;
-			} catch (error) {
-				const { response } = error as { response: { data: { message: string } } };
-				showErrorNotification.set(response.data.message);
-			}
-		} else {
-			showErrorNotification.set('Please, check invalid values');
-		}
+	const customerFind = async () => {
+		const { data } = (await post('/public/customer', { email: $CustomerEmail })) as {
+			data: { username: string; email: string };
+		};
+		CustomerData = data;
+		willShowModal = true;
 	};
 </script>
 
 <Form
-	handler={find}
+	isValid={isCustomerEmailValid}
+	handler={customerFind}
 	btnTitle="Find"
 >
 	<CustomerEmailInput />

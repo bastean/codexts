@@ -1,7 +1,19 @@
 <script lang="ts">
-	import Error from '$lib/components/notification/Error.svelte';
-	import Success from '$lib/components/notification/Success.svelte';
+	import Toast from '$lib/components/notification/Toast.svelte';
+	import { showErrorNotification } from '$lib/stores/notification/ErrorNotification';
+	import { showSuccessNotification } from '$lib/stores/notification/SuccessNotification';
 </script>
 
-<Success />
-<Error />
+{#if $showSuccessNotification}
+	<Toast
+		type="alert-success"
+		notification={$showSuccessNotification}
+	/>
+{/if}
+
+{#if $showErrorNotification}
+	<Toast
+		type="alert-error"
+		notification={$showErrorNotification}
+	/>
+{/if}

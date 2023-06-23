@@ -24,6 +24,14 @@
 
 </div>
 
+<div align="center">
+
+[![ci workflow](https://github.com/bastean/codexts/actions/workflows/ci.yml/badge.svg)](https://github.com/bastean/codexts/actions/workflows/ci.yml)
+[![release workflow](https://github.com/bastean/codexts/actions/workflows/release.yml/badge.svg)](https://github.com/bastean/codexts/actions/workflows/release.yml)
+[![github release](https://img.shields.io/github/v/release/bastean/codexts.svg)](https://github.com/bastean/codexts/releases)
+
+</div>
+
 ## Run
 
 Install required

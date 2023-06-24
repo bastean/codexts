@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.6](https://github.com/bastean/codexts/compare/v1.2.5...v1.2.6) (2023-06-24)
+
+### Bug Fixes
+
+- **deps:** upgrade workspaces dependencies ([41a813d](https://github.com/bastean/codexts/commit/41a813d7e69b5a56ec4b794242a4864a9c1a9309))
+
 ## [1.2.5](https://github.com/bastean/codexts/compare/v1.2.4...v1.2.5) (2023-06-20)
 
 ### Bug Fixes

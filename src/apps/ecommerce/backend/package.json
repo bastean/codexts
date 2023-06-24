@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "codexts-backend",
-	"version": "1.2.5",
+	"version": "1.2.6",
 	"description": "codexts Backend",
 	"author": "Bastean <bastean@pm.me>",
 	"license": "MIT",

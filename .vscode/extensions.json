@@ -1,15 +1,3 @@
 {
-	"recommendations": [
-		"aaron-bond.better-comments",
-		"bradlc.vscode-tailwindcss",
-		"cucumberopen.cucumber-official",
-		"dbaeumer.vscode-eslint",
-		"esbenp.prettier-vscode",
-		"gruntfuggly.todo-tree",
-		"redhat.vscode-yaml",
-		"rohit-gohri.format-code-action",
-		"streetsidesoftware.code-spell-checker",
-		"svelte.svelte-vscode",
-		"hediet.vscode-drawio"
-	]
+	"recommendations": ["ms-vscode-remote.remote-containers"]
 }

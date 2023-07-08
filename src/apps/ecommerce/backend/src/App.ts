@@ -5,7 +5,7 @@ export class App {
 	private readonly server: Express;
 
 	public constructor() {
-		const port = Config.get('server.port');
+		const port = Config.get('backend.port');
 		this.server = new Express(port);
 	}
 

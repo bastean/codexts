@@ -11,34 +11,41 @@ convict.addFormats(convictFormatWithValidator);
 
 export const EcommerceConfig = convict({
 	env: {
-		doc: 'The application environment',
+		doc: 'Application environment',
 		format: ['production', 'development', 'test'],
 		default: 'development',
 		env: 'NODE_ENV'
 	},
-	server: {
+	backend: {
+		host: {
+			doc: 'Backend host name/IP',
+			format: '*',
+			default: 'localhost',
+			env: 'HOST',
+			arg: 'host'
+		},
 		port: {
-			doc: 'The port to bind',
+			doc: 'Backend port to bind',
 			format: 'port',
 			default: 5172,
 			env: 'PORT',
 			arg: 'port'
-		},
-		url: {
-			doc: 'The server URL',
-			format: 'url',
-			default: 'http://localhost:5172',
-			env: 'SERVER_URL',
-			arg: 'server-url'
 		}
 	},
-	client: {
-		url: {
-			doc: 'The client URL',
-			format: 'url',
-			default: 'http://localhost:5173',
-			env: 'CLIENT_URL',
-			arg: 'client-url'
+	frontend: {
+		host: {
+			doc: 'Frontend host name/IP',
+			format: '*',
+			default: 'localhost',
+			env: 'FRONTEND_HOST',
+			arg: 'frontend-host'
+		},
+		port: {
+			doc: 'Frontend port to bind',
+			format: 'port',
+			default: 5173,
+			env: 'FRONTEND_PORT',
+			arg: 'frontend-port'
 		}
 	}
 });

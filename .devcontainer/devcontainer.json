@@ -1,11 +1,11 @@
 {
-	"name": "Codexts",
+	"name": "codexts",
 	"image": "mcr.microsoft.com/devcontainers/base:bookworm",
 	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
 		"ghcr.io/devcontainers/features/node:1": {},
 		"ghcr.io/devcontainers-contrib/features/fish-apt-get:1": {}
 	},
-	"forwardPorts": [5172, 5173],
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -16,6 +16,7 @@
 				"esbenp.prettier-vscode",
 				"gruntfuggly.todo-tree",
 				"hediet.vscode-drawio",
+				"ms-azuretools.vscode-docker",
 				"redhat.vscode-yaml",
 				"rohit-gohri.format-code-action",
 				"streetsidesoftware.code-spell-checker",

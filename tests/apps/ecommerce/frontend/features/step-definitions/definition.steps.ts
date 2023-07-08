@@ -5,7 +5,7 @@ import { chromium } from 'playwright';
 
 import type { Browser, BrowserContext, Page } from 'playwright';
 
-const baseURL = EcommerceConfig.get('client.url');
+const baseURL = `${EcommerceConfig.get('frontend.host')}:${EcommerceConfig.get('frontend.port')}`;
 
 let browser: Browser;
 let context: BrowserContext;

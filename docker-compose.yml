@@ -1,0 +1,37 @@
+services:
+  backend:
+    build:
+      context: src/apps/ecommerce/backend
+      dockerfile: Dockerfile
+      target: deploy
+    environment:
+      NODE_ENV: production
+      HOST: backend
+      PORT: 5172
+      FRONTEND_HOST: frontend
+      FRONTEND_PORT: 5173
+    ports:
+      - '5172:5172'
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider backend:5172
+      interval: 3s
+      timeout: 3s
+      retries: 30
+      start_period: 0s
+    restart: on-failure
+
+  frontend:
+    build:
+      context: src/apps/ecommerce/frontend
+      dockerfile: Dockerfile
+      target: deploy
+      args:
+        BACKEND_URL: 'http://localhost:5172/v1'
+    environment:
+      PORT: 5173
+    ports:
+      - '5173:5173'
+    depends_on:
+      backend:
+        condition: service_healthy
+        restart: true

@@ -4,7 +4,7 @@ import { EcommerceConfig } from 'codexts-contexts-ecommerce/shared/infrastructur
 
 import type { APIResponse, APIRequestContext } from '@playwright/test';
 
-const baseURL = EcommerceConfig.get('server.url');
+const baseURL = `${EcommerceConfig.get('backend.host')}:${EcommerceConfig.get('backend.port')}`;
 
 let apiRequest: APIRequestContext;
 let apiResponse: APIResponse;

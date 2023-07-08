@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const HTTPClient = axios.create({
-	baseURL: (import.meta.env.VITE_SERVER_URL as string) ?? 'http://localhost:5172/v1'
+	baseURL: (import.meta.env.VITE_BACKEND_URL as string) ?? 'http://localhost:5172/v1'
 });
 
 // Query's

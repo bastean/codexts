@@ -6,14 +6,11 @@ services:
       target: deploy
     environment:
       NODE_ENV: production
-      HOST: backend
-      PORT: 5172
-      FRONTEND_HOST: frontend
-      FRONTEND_PORT: 5173
+      PORT: 3000
     ports:
-      - '5172:5172'
+      - '3000:3000'
     healthcheck:
-      test: wget --no-verbose --tries=1 --spider backend:5172
+      test: wget --no-verbose --tries=1 --spider backend:3000
       interval: 3s
       timeout: 3s
       retries: 30
@@ -26,11 +23,11 @@ services:
       dockerfile: Dockerfile
       target: deploy
       args:
-        BACKEND_URL: 'http://localhost:5172/v1'
+        BACKEND_URL: 'http://localhost:3000/v1'
     environment:
-      PORT: 5173
+      PORT: 3030
     ports:
-      - '5173:5173'
+      - '3030:3030'
     depends_on:
       backend:
         condition: service_healthy

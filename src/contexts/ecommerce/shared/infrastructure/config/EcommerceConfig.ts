@@ -17,35 +17,12 @@ export const EcommerceConfig = convict({
 		env: 'NODE_ENV'
 	},
 	backend: {
-		host: {
-			doc: 'Backend host name/IP',
-			format: '*',
-			default: 'localhost',
-			env: 'HOST',
-			arg: 'host'
-		},
 		port: {
 			doc: 'Backend port to bind',
 			format: 'port',
-			default: 5172,
+			default: 3000,
 			env: 'PORT',
 			arg: 'port'
-		}
-	},
-	frontend: {
-		host: {
-			doc: 'Frontend host name/IP',
-			format: '*',
-			default: 'localhost',
-			env: 'FRONTEND_HOST',
-			arg: 'frontend-host'
-		},
-		port: {
-			doc: 'Frontend port to bind',
-			format: 'port',
-			default: 5173,
-			env: 'FRONTEND_PORT',
-			arg: 'frontend-port'
 		}
 	}
 });

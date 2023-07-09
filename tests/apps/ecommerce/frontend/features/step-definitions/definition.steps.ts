@@ -1,11 +1,10 @@
 import { Given, Then, AfterAll, BeforeAll, setDefaultTimeout } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { EcommerceConfig } from 'codexts-contexts-ecommerce/shared/infrastructure/config/EcommerceConfig';
 import { chromium } from 'playwright';
 
 import type { Browser, BrowserContext, Page } from 'playwright';
 
-const baseURL = `${EcommerceConfig.get('frontend.host')}:${EcommerceConfig.get('frontend.port')}`;
+const baseURL = process.env.FRONTEND_URL;
 
 let browser: Browser;
 let context: BrowserContext;
@@ -14,7 +13,9 @@ let page: Page;
 setDefaultTimeout(60 * 1000);
 
 BeforeAll(async () => {
-	browser = await chromium.launch();
+	browser = await chromium.launch({
+		executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
+	});
 	context = await browser.newContext({ baseURL });
 	page = await context.newPage();
 });

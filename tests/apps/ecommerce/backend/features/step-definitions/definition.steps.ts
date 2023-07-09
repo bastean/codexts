@@ -1,10 +1,9 @@
 import { Given, Then, BeforeAll, AfterAll } from '@cucumber/cucumber';
 import { request, expect } from '@playwright/test';
-import { EcommerceConfig } from 'codexts-contexts-ecommerce/shared/infrastructure/config/EcommerceConfig';
 
 import type { APIResponse, APIRequestContext } from '@playwright/test';
 
-const baseURL = `${EcommerceConfig.get('backend.host')}:${EcommerceConfig.get('backend.port')}`;
+const baseURL = process.env.BACKEND_URL;
 
 let apiRequest: APIRequestContext;
 let apiResponse: APIResponse;

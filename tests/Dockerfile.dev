@@ -1,0 +1,7 @@
+FROM node:lts-alpine
+
+WORKDIR /app
+
+RUN apk add chromium
+
+CMD [ "npm", "test", "-w", "codexts-tests" ]

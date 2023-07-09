@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://json-schema.org/draft/2019-09/schema#
+
+services:
+  backend-test:
+    build:
+      context: src/apps/ecommerce/backend
+      dockerfile: Dockerfile.dev
+    environment:
+      NODE_ENV: development
+      HOST: backend-test
+      PORT: 5172
+      FRONTEND_HOST: frontend-test
+      FRONTEND_PORT: 5173
+    ports:
+      - '5172:5172'
+    volumes:
+      - .:/app
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider backend-test:5172
+      interval: 3s
+      timeout: 3s
+      retries: 30
+      start_period: 0s
+    restart: on-failure
+
+  frontend-test:
+    build:
+      context: src/apps/ecommerce/frontend
+      dockerfile: Dockerfile.dev
+    environment:
+      PORT: 5173
+      VITE_BACKEND_URL: 'http://backend-test:5172/v1'
+    ports:
+      - '5173:5173'
+    volumes:
+      - .:/app
+    depends_on:
+      backend-test:
+        condition: service_healthy
+        restart: true
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider frontend-test:5173
+      interval: 3s
+      timeout: 3s
+      retries: 30
+      start_period: 0s
+
+  tests:
+    build:
+      context: tests
+      dockerfile: Dockerfile.dev
+    environment:
+      BACKEND_URL: 'http://backend-test:5172'
+      FRONTEND_URL: 'http://frontend-test:5173'
+      PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH: '/usr/bin/chromium-browser'
+    volumes:
+      - .:/app
+    depends_on:
+      frontend-test:
+        condition: service_healthy
+        restart: true

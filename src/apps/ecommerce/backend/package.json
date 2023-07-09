@@ -21,9 +21,10 @@
 	"scripts": {
 		"dev": "nodemon -w src -x ts-node-esm --experimentalSpecifierResolution node src/start",
 		"build": "rm -rf build && mkdir -p build && cp -R src package.json ../../../../tsconfig.json build && cp -R ../../../contexts/ecommerce build && cd build && npm pkg set workspaces[]='ecommerce'",
-		"start": "ts-node-esm -T --experimentalSpecifierResolution node src/start"
+		"start": "ts-node-esm --swc --experimentalSpecifierResolution node src/start"
 	},
 	"dependencies": {
+		"@swc/core": "1.3.68",
 		"awilix": "8.0.1",
 		"compression": "1.7.4",
 		"cors": "2.8.5",

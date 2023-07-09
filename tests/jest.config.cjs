@@ -1,5 +1,7 @@
 module.exports = {
-	preset: 'ts-jest/presets/default-esm',
+	transform: {
+		'^.+\\.ts$': '@swc/jest'
+	},
 	extensionsToTreatAsEsm: ['.ts'],
 	collectCoverage: true,
 	verbose: true

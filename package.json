@@ -93,7 +93,7 @@
 		"hooks": {
 			"before:init": [
 				"npm run lint:check",
-				"npm test -w codexts-tests"
+				"docker compose -f docker-compose.test.yml up --exit-code-from tests"
 			],
 			"before:release": [
 				"npm i",

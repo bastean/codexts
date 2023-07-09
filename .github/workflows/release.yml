@@ -11,6 +11,7 @@ on:
           - beta
           - stable
         default: stable
+
       bump:
         type: choice
         description: Bump
@@ -20,10 +21,12 @@ on:
           - major
           - auto
         default: auto
+
       npm:
         type: boolean
         description: NPM Publish
         default: false
+
       dry:
         type: boolean
         description: Dry Release
@@ -32,15 +35,16 @@ on:
 jobs:
   Generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Setup Node
         uses: ./.github/actions/setup-node
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+
       - name: Import GPG Key
         id: import-gpg
         uses: crazy-max/ghaction-import-gpg@v5
@@ -51,11 +55,13 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
           git_tag_gpgsign: true
+
       - name: Import NPM Token
         if: github.event.inputs.npm == 'true'
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Generate Release
         run: npm run release:ci -- $STATUS_ARG $BUMP_ARG $DRY_ARG
         env:

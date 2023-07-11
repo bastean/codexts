@@ -3,9 +3,8 @@ services:
     build:
       context: src/apps/ecommerce/backend
       dockerfile: Dockerfile
-      target: deploy
+      target: production
     environment:
-      NODE_ENV: production
       PORT: 3000
     ports:
       - '3000:3000'
@@ -21,7 +20,7 @@ services:
     build:
       context: src/apps/ecommerce/frontend
       dockerfile: Dockerfile
-      target: deploy
+      target: production
       args:
         BACKEND_URL: 'http://localhost:3000/v1'
     environment:

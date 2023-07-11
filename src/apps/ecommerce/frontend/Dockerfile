@@ -11,7 +11,9 @@ ENV VITE_BACKEND_URL=${BACKEND_URL}
 RUN npm i \
     && npm run build
 
-FROM node:lts-alpine AS deploy
+FROM node:lts-alpine AS production
+
+ENV NODE_ENV production
 
 WORKDIR /app
 

@@ -1,4 +1,6 @@
-FROM node:lts-alpine AS deploy
+FROM node:lts-alpine AS production
+
+ENV NODE_ENV production
 
 WORKDIR /app
 

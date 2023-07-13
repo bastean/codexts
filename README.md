@@ -1,3 +1,5 @@
+<br />
+
 <h1 align="center">
 
 <!-- [![logo readme](https://raw.githubusercontent.com/bastean/codexts/main/docs/readme/logo-readme.png)](https://github.com/bastean) -->
@@ -8,7 +10,7 @@
 
 <div align="center">
 
-> Example project applying Hexagonal Architecture, Domain-Driven Design (DDD), Command Query Responsibility Segregation (CQRS), Behavior-Driven Development (BDD), Continuous Integration (CI) and more... in TypeScript
+> Example project applying Hexagonal Architecture, Domain-Driven Design (DDD), Command Query Responsibility Segregation (CQRS), Behavior-Driven Development (BDD), Continuous Integration (CI), Docker and more... in TypeScript
 
 </div>
 
@@ -36,21 +38,42 @@
 
 Install required
 
-- [Node.js/npm](https://nodejs.org/en/download)
+- [Docker](https://docs.docker.com/get-docker)
+  - [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 ### Locally
 
 - HTTPS
 
   ```bash
-  git clone https://github.com/bastean/codexts.git && cd codexts/ && npm run init && npm start
+  git clone https://github.com/bastean/codexts.git && cd codexts && docker compose up
   ```
 
 - SSH
 
   ```bash
-  git clone git@github.com:bastean/codexts.git && cd codexts/ && npm run init && npm start
+  git clone git@github.com:bastean/codexts.git && cd codexts && docker compose up
   ```
+
+### Dev Container
+
+- HTTPS
+
+  ```bash
+  git clone https://github.com/bastean/codexts.git && cd codexts && code .
+  ```
+
+- SSH
+
+  ```bash
+  git clone git@github.com:bastean/codexts.git && cd codexts && code .
+  ```
+
+**Reopen in Container**
+
+```bash
+npm start
+```
 
 ## License
 

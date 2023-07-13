@@ -48,7 +48,7 @@ jobs:
         uses: ./.github/actions/setup-node
 
       - name: Unit, Integration & Acceptance
-        run: npm run docker:test
+        run: npm test
 
       - name: Upload Reports
         uses: actions/upload-artifact@v3

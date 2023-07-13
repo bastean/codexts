@@ -1,8 +1,8 @@
 services:
   backend:
     build:
-      context: src/apps/ecommerce/backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: src/apps/ecommerce/backend/Dockerfile
       target: production
     environment:
       PORT: 3000

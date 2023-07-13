@@ -1,5 +1,0 @@
-#* ENV
-.env
-.env.*
-!.env.example*
-.npmrc

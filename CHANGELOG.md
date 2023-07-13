@@ -1,5 +1,31 @@
 # Changelog
 
+## [2.0.0](https://github.com/bastean/codexts/compare/v1.2.6...v2.0.0) (2023-07-13)
+
+### ⚠ BREAKING CHANGES
+
+- **readme:** Using docker as a basis for development and production
+
+### Features
+
+- add swc for backend and tests ([30cbf0f](https://github.com/bastean/codexts/commit/30cbf0f1e7fa1baf3f3f75787e6b2b1788ba5002))
+- **devcontainer:** add post create command ([21c126c](https://github.com/bastean/codexts/commit/21c126c008204ad073b8ee03cb2f69af6816e083))
+- **docker:** add devcontainer ([ffbb50b](https://github.com/bastean/codexts/commit/ffbb50bd3f28fe46f2587c6ab727c41f0b219d03))
+- **docker:** add npm scripts to run compose ([f41645e](https://github.com/bastean/codexts/commit/f41645ed90758662c443709f47baa3bb32984f6c))
+- **docker:** change compose services ports ([7ea1eb2](https://github.com/bastean/codexts/commit/7ea1eb242a93885533eafb16df49ac90cd52bab4))
+- **docker:** dockerize backend and frontend ([8f931f0](https://github.com/bastean/codexts/commit/8f931f0db8b0bfb6ca50ed99e9f8b8bdd4d30857))
+- **docker:** dockerize tests ([956b51f](https://github.com/bastean/codexts/commit/956b51f6bf5ca2dbe449c71cce53cfddab78b6dd))
+- **github:** dockerize workflows ([da429ed](https://github.com/bastean/codexts/commit/da429ed8004bb9858ecb798e599fe3a38e8239f3))
+
+### Bug Fixes
+
+- **backend:** change build process in dockerfile ([ae9ced8](https://github.com/bastean/codexts/commit/ae9ced84dcccabe2165a8a08d09d283405cdb31e))
+- **deps:** upgrade workspaces dependencies ([b05ac64](https://github.com/bastean/codexts/commit/b05ac64fd124667e75d67d4ad53718f80d45462a))
+
+### Documentation
+
+- **readme:** update description to use docker ([60d71a3](https://github.com/bastean/codexts/commit/60d71a38597ad57e1b0cc6c1b7a1b97b71a0eec4))
+
 ## [1.2.6](https://github.com/bastean/codexts/compare/v1.2.5...v1.2.6) (2023-06-24)
 
 ### Bug Fixes

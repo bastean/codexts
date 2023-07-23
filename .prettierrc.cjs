@@ -11,7 +11,6 @@ module.exports = {
 	/*
 	 * Plugins
 	 */
-	pluginSearchDirs: false,
 	plugins: ['prettier-plugin-svelte', 'prettier-plugin-tailwindcss'],
 	/*
 	 * 'svelte'

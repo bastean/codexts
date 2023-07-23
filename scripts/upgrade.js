@@ -26,13 +26,13 @@ try {
 
 	console.log('\n> Installing new versions\n');
 	unlinkSync('package-lock.json');
-	await $$`npm i`;
+	await $$`PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm i --legacy-peer-deps`;
 
 	console.log('\n> Running Lint\n');
 	await $$`npm run lint:check`;
 
 	console.log('\n> Running Tests\n');
-	await $$`npm run test -w codexts-tests`;
+	await $$`npm test`;
 
 	console.log('\n> Commit changes\n');
 	await $({

@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/bastean/codexts/compare/v2.0.0...v2.1.0) (2023-07-26)
+
+### Features
+
+- **contexts:** add mongo for customer persistence ([ca51373](https://github.com/bastean/codexts/commit/ca5137342f28ef9d5cb35b482eef9ced5aa7eb1c))
+
+### Bug Fixes
+
+- **deps:** add legacy-peer-deps to init script ([57741af](https://github.com/bastean/codexts/commit/57741af89ae56702ce05f90f2f68ea702486e4b1))
+- **deps:** upgrade workspaces dependencies ([30b7b4b](https://github.com/bastean/codexts/commit/30b7b4bd97ad7cffbba5ffa4ed6796fdc50e8c5c))
+- **deps:** upgrade workspaces dependencies ([262549b](https://github.com/bastean/codexts/commit/262549bac99f175db3371ded93b3259dc7dcde4e))
+
 ## [2.0.0](https://github.com/bastean/codexts/compare/v1.2.6...v2.0.0) (2023-07-13)
 
 ### ⚠ BREAKING CHANGES

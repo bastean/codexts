@@ -37,9 +37,7 @@ describe('LowdbCustomerRepository', () => {
 
 	describe('#delete', () => {
 		it('should delete a customer', async () => {
-			const customerEmail = CustomerEmailMother.random();
-
-			const customer = CustomerMother.withIdAndUsername(customerEmail.value);
+			const customer = CustomerMother.random();
 
 			await repository.save(customer);
 

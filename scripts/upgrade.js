@@ -6,7 +6,9 @@ const $$ = $({ stdio: 'inherit' });
 
 const errorMessage = (error) => {
 	console.log('\n> Upgrade Failed!');
-	console.log('\n> Please, check "Error" or undo changes with: git reset --hard HEAD && npm ci\n');
+	console.log(
+		'\n> Please, check "Error" or undo changes with: git reset --hard HEAD && npm run init\n'
+	);
 	console.log(error);
 	process.exit(1);
 };
@@ -26,7 +28,10 @@ try {
 
 	console.log('\n> Installing new versions\n');
 	unlinkSync('package-lock.json');
-	await $$`PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm i --legacy-peer-deps`;
+	await $({
+		stdio: 'inherit',
+		shell: true
+	})`PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm i --legacy-peer-deps`;
 
 	console.log('\n> Running Lint\n');
 	await $$`npm run lint:check`;

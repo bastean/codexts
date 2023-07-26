@@ -24,9 +24,9 @@
 	],
 	"type": "module",
 	"scripts": {
-		"init": "npm ci",
+		"init": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm ci --legacy-peer-deps",
 		"prepare": "git init && husky install",
-		"genesis": "git clean -e src/**/.env* -fdx && git reset --hard HEAD && npm run init",
+		"genesis": "git clean -e .env* -fdx && git reset --hard HEAD && npm run init",
 		"commit": "cz",
 		"upgrade": "node scripts/upgrade",
 		"upgrade:check": "npx ncu --root -ws",

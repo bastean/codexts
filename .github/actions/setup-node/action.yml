@@ -22,4 +22,4 @@ runs:
     - name: Install Dependencies
       if: steps.node_modules.outputs.cache-hit != 'true'
       shell: ${{ runner.os == 'Windows' && 'pwsh' || 'bash' }}
-      run: npm ci
+      run: npm run init

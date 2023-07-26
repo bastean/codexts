@@ -1,13 +1,21 @@
 services:
+  db-test:
+    container_name: codexts-db-test
+    image: mongo:4.4
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: codexts
+      MONGO_INITDB_ROOT_PASSWORD: codexts
+    command: mongod --quiet --logpath /dev/null
+
   backend-test:
+    container_name: codexts-backend-test
     build:
       context: src/apps/ecommerce/backend
       dockerfile: Dockerfile.dev
     environment:
       NODE_ENV: test
       PORT: 3000
-    ports:
-      - '3000:3000'
+      DB_URI: 'mongodb://codexts:codexts@db-test:27017/codexts-test?authSource=admin'
     volumes:
       - .:/app
     healthcheck:
@@ -19,20 +27,18 @@ services:
     restart: on-failure
 
   frontend-test:
+    container_name: codexts-frontend-test
     build:
       context: src/apps/ecommerce/frontend
       dockerfile: Dockerfile.dev
     environment:
       PORT: 3030
       VITE_BACKEND_URL: 'http://backend-test:3000/v1'
-    ports:
-      - '3030:3030'
     volumes:
       - .:/app
     depends_on:
       backend-test:
         condition: service_healthy
-        restart: true
     healthcheck:
       test: wget --no-verbose --tries=1 --spider frontend-test:3030
       interval: 3s
@@ -41,16 +47,17 @@ services:
       start_period: 0s
 
   tests:
+    container_name: codexts-tests
     build:
       context: tests
       dockerfile: Dockerfile.dev
     environment:
       BACKEND_URL: 'http://backend-test:3000'
       FRONTEND_URL: 'http://frontend-test:3030'
+      DB_URI: 'mongodb://codexts:codexts@db-test:27017/codexts-test?authSource=admin'
       PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH: '/usr/bin/chromium-browser'
     volumes:
       - .:/app
     depends_on:
       frontend-test:
         condition: service_healthy
-        restart: true

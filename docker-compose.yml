@@ -1,11 +1,30 @@
 services:
+  db:
+    container_name: codexts-db
+    image: mongo:4.4
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    command: mongod --quiet --logpath /dev/null
+    ports:
+      - '27017:27017'
+    volumes:
+      - codexts-db:/data/db
+    restart: always
+
   backend:
+    container_name: codexts-backend
     build:
       context: .
       dockerfile: src/apps/ecommerce/backend/Dockerfile
       target: production
+    env_file:
+      - .env
     environment:
       PORT: 3000
+      DB_URI: 'mongodb://${DB_USERNAME}:${DB_PASSWORD}@db:27017/${DB_NAME}?authSource=admin'
     ports:
       - '3000:3000'
     healthcheck:
@@ -14,9 +33,10 @@ services:
       timeout: 3s
       retries: 30
       start_period: 0s
-    restart: on-failure
+    restart: always
 
   frontend:
+    container_name: codexts-frontend
     build:
       context: src/apps/ecommerce/frontend
       dockerfile: Dockerfile
@@ -30,4 +50,7 @@ services:
     depends_on:
       backend:
         condition: service_healthy
-        restart: true
+    restart: always
+
+volumes:
+  codexts-db:

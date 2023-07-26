@@ -5,7 +5,7 @@ import { CustomerFind } from 'codexts-contexts-ecommerce/customer/application/Fi
 import { CustomerFindQueryHandler } from 'codexts-contexts-ecommerce/customer/application/Find/CustomerFindQueryHandler';
 import { CustomerRegister } from 'codexts-contexts-ecommerce/customer/application/Register/CustomerRegister';
 import { CustomerRegisterCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Register/CustomerRegisterCommandHandler';
-import { LowdbCustomerRepository } from 'codexts-contexts-ecommerce/customer/infrastructure/persistence/lowdb/LowdbCustomerRepository';
+import { MongoCustomerRepository } from 'codexts-contexts-ecommerce/customer/infrastructure/persistence/mongo/MongoCustomerRepository';
 
 const container = createContainer({
 	injectionMode: InjectionMode.CLASSIC
@@ -13,7 +13,7 @@ const container = createContainer({
 	customerRegister: asClass(CustomerRegister),
 	customerDelete: asClass(CustomerDelete),
 	customerFind: asClass(CustomerFind),
-	repository: asClass(LowdbCustomerRepository).singleton(),
+	repository: asClass(MongoCustomerRepository).singleton(),
 	customerRegisterHandler: asClass(CustomerRegisterCommandHandler),
 	customerDeleteHandler: asClass(CustomerDeleteCommandHandler),
 	customerFindHandler: asClass(CustomerFindQueryHandler)

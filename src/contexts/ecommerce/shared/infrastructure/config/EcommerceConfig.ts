@@ -21,8 +21,15 @@ export const EcommerceConfig = convict({
 			doc: 'Backend port to bind',
 			format: 'port',
 			default: 3000,
-			env: 'PORT',
-			arg: 'port'
+			env: 'PORT'
+		}
+	},
+	db: {
+		uri: {
+			doc: 'Database URI',
+			format: '*',
+			default: '',
+			env: 'DB_URI'
 		}
 	}
 });

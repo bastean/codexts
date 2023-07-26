@@ -21,7 +21,6 @@ export class Express {
 		this.port = port;
 		this.express = express();
 
-		this.express.enable('trust proxy');
 		this.express.disable('x-powered-by');
 
 		this.express.use(express.json());
@@ -37,10 +36,6 @@ export class Express {
 	}
 
 	public async listen() {
-		console.clear();
-
-		Log.info('Starting server');
-
 		Log.info('Loading endpoints');
 
 		this.express.use(await loadEndpoints());

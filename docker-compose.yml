@@ -2,8 +2,6 @@ services:
   db:
     container_name: codexts-db
     image: mongo:4.4
-    env_file:
-      - .env
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
@@ -20,13 +18,13 @@ services:
       context: .
       dockerfile: src/apps/ecommerce/backend/Dockerfile
       target: production
-    env_file:
-      - .env
     environment:
       PORT: 3000
       DB_URI: 'mongodb://${DB_USERNAME}:${DB_PASSWORD}@db:27017/${DB_NAME}?authSource=admin'
     ports:
       - '3000:3000'
+    volumes:
+      - codexts-backend:/app/logs
     healthcheck:
       test: wget --no-verbose --tries=1 --spider backend:3000
       interval: 3s
@@ -54,3 +52,4 @@ services:
 
 volumes:
   codexts-db:
+  codexts-backend:

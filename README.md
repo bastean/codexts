@@ -46,13 +46,13 @@ Install required
 - HTTPS
 
   ```bash
-  git clone https://github.com/bastean/codexts.git && cd codexts && docker compose up
+  git clone https://github.com/bastean/codexts.git && cd codexts && docker compose --env-file .env.example up
   ```
 
 - SSH
 
   ```bash
-  git clone git@github.com:bastean/codexts.git && cd codexts && docker compose up
+  git clone git@github.com:bastean/codexts.git && cd codexts && docker compose --env-file .env.example up
   ```
 
 ### Dev Container

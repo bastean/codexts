@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.1.1](https://github.com/bastean/codexts/compare/v2.1.0...v2.1.1) (2023-07-28)
+
+### Bug Fixes
+
+- **docker:** add example env file ([f0ea867](https://github.com/bastean/codexts/commit/f0ea867a58b6f6c6c4a9c51c23313f6fbd9120c7))
+
 ## [2.1.0](https://github.com/bastean/codexts/compare/v2.0.0...v2.1.0) (2023-07-26)
 
 ### Features

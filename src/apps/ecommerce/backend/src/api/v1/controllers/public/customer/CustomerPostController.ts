@@ -1,6 +1,7 @@
 import httpStatus from 'http-status';
 
-import { CustomerFindHandler } from '../../../../../container/Customer';
+import { CustomerLoginHandler } from '../../../../../container/Customer';
+import { JWT } from '../../../../utils/JWT';
 
 import type { Controller } from '../../../../controller/Controller';
 import type { NextFunction, Response } from 'express';
@@ -8,6 +9,7 @@ import type { NextFunction, Response } from 'express';
 type PostRequest = {
 	body: {
 		email: string;
+		password: string;
 	};
 };
 
@@ -17,9 +19,10 @@ export const CustomerPostController: Controller = async (
 	next: NextFunction
 ) => {
 	try {
-		const { email } = req.body;
-		const response = (await CustomerFindHandler.handle({ email })) as object;
-		res.status(httpStatus.OK).json(response);
+		const { email, password } = req.body;
+		const response = (await CustomerLoginHandler.handle({ email, password })) as object;
+		const id = JWT.generate((response as { id: string }).id);
+		res.status(httpStatus.OK).json({ ...response, id });
 	} catch (error) {
 		next(error);
 	}

@@ -8,8 +8,9 @@ import type { NextFunction, Response } from 'express';
 type PutRequest = {
 	body: {
 		id: string;
-		username: string;
 		email: string;
+		username: string;
+		password: string;
 	};
 };
 
@@ -19,8 +20,8 @@ export const CustomerPutController: Controller = async (
 	next: NextFunction
 ) => {
 	try {
-		const { id, username, email } = req.body;
-		await CustomerRegisterHandler.handle({ id, username, email });
+		const { id, email, username, password } = req.body;
+		await CustomerRegisterHandler.handle({ id, email, username, password });
 		res.status(httpStatus.CREATED).send();
 	} catch (error) {
 		next(error);

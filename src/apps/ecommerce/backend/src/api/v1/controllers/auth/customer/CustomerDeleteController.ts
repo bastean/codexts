@@ -11,8 +11,7 @@ export const CustomerDeleteController: Controller = async (
 	next: NextFunction
 ) => {
 	try {
-		const { id } = req.params;
-		await CustomerDeleteHandler.handle({ id });
+		await CustomerDeleteHandler.handle({ id: (req as Request & { id: string }).id });
 		res.status(httpStatus.OK).send();
 	} catch (error) {
 		next(error);

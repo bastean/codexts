@@ -1,5 +1,6 @@
 import { CustomerEmail } from '../valueObjects/CustomerEmail';
 import { CustomerId } from '../valueObjects/CustomerId';
+import { CustomerPassword } from '../valueObjects/CustomerPassword';
 import { CustomerUsername } from '../valueObjects/CustomerUsername';
 
 import type { AggregateRoot } from '../../../shared/domain/aggregate/AggregateRoot';
@@ -7,39 +8,45 @@ import type { AggregateRoot } from '../../../shared/domain/aggregate/AggregateRo
 export class Customer implements AggregateRoot {
 	public constructor(
 		public readonly id: CustomerId,
+		public readonly email: CustomerEmail,
 		public readonly username: CustomerUsername,
-		public readonly email: CustomerEmail
+		public readonly password: CustomerPassword
 	) {}
 
-	public static create(id: string, username: string, email: string): Customer {
+	public static create(id: string, email: string, username: string, password: string): Customer {
 		return new Customer(
 			new CustomerId(id),
+			new CustomerEmail(email),
 			new CustomerUsername(username),
-			new CustomerEmail(email)
+			CustomerPassword.fromPlainToHashed(password)
 		);
 	}
 
 	public static fromPrimitives(plainData: {
 		id: string;
-		username: string;
 		email: string;
+		username: string;
+		password: string;
 	}): Customer {
 		return new Customer(
 			new CustomerId(plainData.id),
+			new CustomerEmail(plainData.email),
 			new CustomerUsername(plainData.username),
-			new CustomerEmail(plainData.email)
+			CustomerPassword.fromHashed(plainData.password)
 		);
 	}
 
 	public toPrimitives(): {
 		id: string;
-		username: string;
 		email: string;
+		username: string;
+		password: string;
 	} {
 		return {
 			id: this.id.value,
+			email: this.email.value,
 			username: this.username.value,
-			email: this.email.value
+			password: this.password.value
 		};
 	}
 }

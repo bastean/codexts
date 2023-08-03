@@ -2,19 +2,19 @@ import type { Response } from '../../../shared/domain/cqrs/Response';
 
 type Params = {
 	id: string;
-	username: string;
 	email: string;
+	username: string;
 };
-export class CustomerFindResponse implements Response {
+export class CustomerLoginResponse implements Response {
 	public readonly id: string;
-
-	public readonly username: string;
 
 	public readonly email: string;
 
-	public constructor({ id, username, email }: Params) {
+	public readonly username: string;
+
+	public constructor({ id, email, username }: Params) {
 		this.id = id;
-		this.username = username;
 		this.email = email;
+		this.username = username;
 	}
 }

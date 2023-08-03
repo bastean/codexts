@@ -24,7 +24,6 @@ services:
       timeout: 3s
       retries: 30
       start_period: 0s
-    restart: on-failure
 
   frontend-test:
     container_name: codexts-frontend-test

@@ -7,6 +7,7 @@ import slash from 'slash';
 
 import { errorHandler } from '../../api/middleware/errorHandler';
 import { validateSchema } from '../../api/middleware/validateSchema';
+import { verifyJWT } from '../../api/middleware/verifyJWT';
 import { Log } from '../../container/Log';
 
 const routing = Router();
@@ -43,7 +44,8 @@ export const loadEndpoints = async (): Promise<Router> => {
 						param('*').trim().notEmpty().escape(),
 						query('*').trim().notEmpty().escape(),
 						body('*').trim().notEmpty().escape(),
-						validateSchema
+						validateSchema,
+						verifyJWT
 					],
 					endpoint.router
 				);

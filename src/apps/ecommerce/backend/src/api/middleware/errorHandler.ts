@@ -3,16 +3,14 @@ import { DomainErrors } from '../../container/DomainErrors';
 import type { NextFunction, Request, Response } from 'express';
 
 export const errorHandler = (err: Error, _req: Request, res: Response, next: NextFunction) => {
-	let hasResponded = false;
+	let isNotResponded: boolean = true;
 
 	DomainErrors.forEach((domainError) => {
 		if (err instanceof domainError.type) {
 			res.status(domainError.code).json({ message: err.message });
-			hasResponded = true;
+			isNotResponded = false;
 		}
 	});
 
-	if (!hasResponded) {
-		next(err);
-	}
+	if (isNotResponded) next(err);
 };

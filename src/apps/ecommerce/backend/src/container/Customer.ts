@@ -1,27 +1,33 @@
 import { asClass, createContainer, InjectionMode } from 'awilix';
 import { CustomerDelete } from 'codexts-contexts-ecommerce/customer/application/Delete/CustomerDelete';
 import { CustomerDeleteCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Delete/CustomerDeleteCommandHandler';
-import { CustomerFind } from 'codexts-contexts-ecommerce/customer/application/Find/CustomerFind';
-import { CustomerFindQueryHandler } from 'codexts-contexts-ecommerce/customer/application/Find/CustomerFindQueryHandler';
+import { CustomerLogin } from 'codexts-contexts-ecommerce/customer/application/Login/CustomerLogin';
+import { CustomerLoginQueryHandler } from 'codexts-contexts-ecommerce/customer/application/Login/CustomerLoginQueryHandler';
 import { CustomerRegister } from 'codexts-contexts-ecommerce/customer/application/Register/CustomerRegister';
 import { CustomerRegisterCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Register/CustomerRegisterCommandHandler';
+import { CustomerUpdate } from 'codexts-contexts-ecommerce/customer/application/Update/CustomerUpdate';
+import { CustomerUpdateCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Update/CustomerUpdateCommandHandler';
 import { MongoCustomerRepository } from 'codexts-contexts-ecommerce/customer/infrastructure/persistence/mongo/MongoCustomerRepository';
 
 const container = createContainer({
 	injectionMode: InjectionMode.CLASSIC
 }).register({
 	customerRegister: asClass(CustomerRegister),
+	customerUpdate: asClass(CustomerUpdate),
 	customerDelete: asClass(CustomerDelete),
-	customerFind: asClass(CustomerFind),
+	customerLogin: asClass(CustomerLogin),
 	repository: asClass(MongoCustomerRepository).singleton(),
 	customerRegisterHandler: asClass(CustomerRegisterCommandHandler),
+	customerUpdateHandler: asClass(CustomerUpdateCommandHandler),
 	customerDeleteHandler: asClass(CustomerDeleteCommandHandler),
-	customerFindHandler: asClass(CustomerFindQueryHandler)
+	customerLoginHandler: asClass(CustomerLoginQueryHandler)
 });
 
 export const CustomerRegisterHandler =
 	container.resolve<CustomerRegisterCommandHandler>('customerRegisterHandler');
+export const CustomerUpdateHandler =
+	container.resolve<CustomerUpdateCommandHandler>('customerUpdateHandler');
 export const CustomerDeleteHandler =
 	container.resolve<CustomerDeleteCommandHandler>('customerDeleteHandler');
-export const CustomerFindHandler =
-	container.resolve<CustomerFindQueryHandler>('customerFindHandler');
+export const CustomerLoginHandler =
+	container.resolve<CustomerLoginQueryHandler>('customerLoginHandler');

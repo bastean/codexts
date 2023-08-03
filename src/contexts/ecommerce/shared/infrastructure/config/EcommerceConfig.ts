@@ -22,6 +22,12 @@ export const EcommerceConfig = convict({
 			format: 'port',
 			default: 3000,
 			env: 'PORT'
+		},
+		jwtPrivateKey: {
+			doc: 'JWT Private Key',
+			format: '*',
+			default: '',
+			env: 'JWT_PRIVATE_KEY'
 		}
 	},
 	db: {

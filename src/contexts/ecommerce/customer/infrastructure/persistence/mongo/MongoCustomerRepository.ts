@@ -6,12 +6,14 @@ import type { Nullable } from '../../../../shared/domain/types/Nullable';
 import type { CustomerRepository } from '../../../domain/repository/CustomerRepository';
 import type { CustomerEmail } from '../../../domain/valueObjects/CustomerEmail';
 import type { CustomerId } from '../../../domain/valueObjects/CustomerId';
+import type { CustomerUsername } from '../../../domain/valueObjects/CustomerUsername';
 import type { Model } from 'mongoose';
 
 type CustomerDocument = {
 	id: string;
 	username: string;
 	email: string;
+	password: string;
 };
 
 export class MongoCustomerRepository implements CustomerRepository {
@@ -23,7 +25,8 @@ export class MongoCustomerRepository implements CustomerRepository {
 			new Schema<CustomerDocument>({
 				id: { type: String, required: true },
 				username: { type: String, required: true },
-				email: { type: String, required: true }
+				email: { type: String, required: true },
+				password: { type: String, required: true }
 			})
 		);
 	}
@@ -32,24 +35,38 @@ export class MongoCustomerRepository implements CustomerRepository {
 		await new this.CustomerModel(customer.toPrimitives()).save();
 	}
 
+	public async update(customer: Customer): Promise<void> {
+		await this.CustomerModel.findOneAndUpdate({ id: customer.id.value }, customer.toPrimitives());
+	}
+
 	public async delete(id: CustomerId): Promise<void> {
 		await this.CustomerModel.findOneAndDelete({ id: id.value });
 	}
 
-	public async search(email: CustomerEmail, id?: CustomerId): Promise<Nullable<Customer>> {
-		const primitive: CustomerDocument | null =
-			(await this.CustomerModel.findOne({ email: email.value })) ||
-			(await this.CustomerModel.findOne({ id: id?.value }));
+	public async search({
+		id,
+		email,
+		username
+	}: {
+		id?: CustomerId;
+		email?: CustomerEmail;
+		username?: CustomerUsername;
+	}): Promise<Nullable<Customer>> {
+		const primitive: CustomerDocument | null = await this.CustomerModel.findOne({
+			$or: [{ id: id?.value }, { email: email?.value }, { username: username?.value }]
+		});
+
+		let customer: Nullable<Customer>;
 
 		if (primitive !== undefined && primitive !== null) {
-			const customer = Customer.fromPrimitives({
+			customer = Customer.fromPrimitives({
 				id: primitive.id,
 				username: primitive.username,
-				email: primitive.email
+				email: primitive.email,
+				password: primitive.password
 			});
-			return customer;
 		}
 
-		return null;
+		return customer;
 	}
 }

@@ -7,27 +7,27 @@ export class CustomerRegister {
 	public constructor(private readonly repository: CustomerRepository) {}
 
 	public async run(customer: Customer): Promise<void> {
-		const isCustomerIdAlreadyRegister = await this.repository.search({
+		const isCustomerIdAlreadyRegistered = await this.repository.search({
 			id: customer.id
 		});
 
-		if (isCustomerIdAlreadyRegister) {
+		if (isCustomerIdAlreadyRegistered) {
 			throw new CustomerAlreadyExistError('Id already registered');
 		}
 
-		const isCustomerEmailAlreadyRegister = await this.repository.search({
+		const isCustomerEmailAlreadyRegistered = await this.repository.search({
 			email: customer.email
 		});
 
-		if (isCustomerEmailAlreadyRegister) {
+		if (isCustomerEmailAlreadyRegistered) {
 			throw new CustomerAlreadyExistError('Email already registered');
 		}
 
-		const isCustomerUsernameAlreadyRegister = await this.repository.search({
+		const isCustomerUsernameAlreadyRegistered = await this.repository.search({
 			username: customer.username
 		});
 
-		if (isCustomerUsernameAlreadyRegister) {
+		if (isCustomerUsernameAlreadyRegistered) {
 			throw new CustomerAlreadyExistError('Username already registered');
 		}
 

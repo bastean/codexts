@@ -5,8 +5,8 @@ import { ValueObject } from './ValueObject';
 
 export abstract class Email extends ValueObject<string> {
 	public constructor(value: string) {
-		super(value);
-		this.ensureIsValidEmail(value);
+		super(value.trim());
+		this.ensureIsValidEmail(this.value);
 	}
 
 	private ensureIsValidEmail(email: string): void {

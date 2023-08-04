@@ -7,10 +7,10 @@ import { CustomerUsernameLengthError } from './CustomerUsernameLengthError';
 
 export class CustomerUsername extends StringValueObject {
 	public constructor(value: string) {
-		super(value);
+		super(value.trim());
 
-		this.ensureLengthIsAllowed(value);
-		this.ensureAlphanumericValuesAllowed(value);
+		this.ensureLengthIsAllowed(this.value);
+		this.ensureAlphanumericValuesAllowed(this.value);
 	}
 
 	private ensureLengthIsAllowed(username: string): void {

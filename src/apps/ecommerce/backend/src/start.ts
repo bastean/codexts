@@ -11,9 +11,7 @@ process.on('uncaughtException', (error, origin) => {
 const app = new App();
 await app.start();
 
-const shutdownGracefully = () => {
-	app.stop();
-};
+const shutdownGracefully = () => app.stop();
 
 process.on('SIGINT', shutdownGracefully);
 process.on('SIGTERM', shutdownGracefully);

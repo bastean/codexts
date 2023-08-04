@@ -21,19 +21,19 @@ export class CustomerUpdate {
 
 		if (!customerAlreadyRegistered) throw new CustomerNotExistError('Not found');
 
-		const isCustomerEmailAlreadyRegister =
+		const isCustomerEmailAlreadyRegistered =
 			email !== undefined &&
 			(await this.repository.search({ email: new CustomerEmail(email) })) !== undefined;
 
-		if (isCustomerEmailAlreadyRegister) {
+		if (isCustomerEmailAlreadyRegistered) {
 			throw new CustomerAlreadyExistError('Email already registered');
 		}
 
-		const isCustomerUsernameAlreadyRegister =
+		const isCustomerUsernameAlreadyRegistered =
 			username !== undefined &&
 			(await this.repository.search({ username: new CustomerUsername(username) })) !== undefined;
 
-		if (isCustomerUsernameAlreadyRegister) {
+		if (isCustomerUsernameAlreadyRegistered) {
 			throw new CustomerAlreadyExistError('Username already registered');
 		}
 

@@ -3,7 +3,6 @@ import { pathToFileURL } from 'url';
 import { Router } from 'express';
 import { body, query, param } from 'express-validator';
 import { globSync } from 'glob';
-import slash from 'slash';
 
 import { errorHandler } from '../../api/middleware/errorHandler';
 import { validateSchema } from '../../api/middleware/validateSchema';
@@ -12,47 +11,44 @@ import { Log } from '../../container/Log';
 
 const routing = Router();
 
-const formatEndpoint = (endpointPath: string): string => {
-	const formatEndpointPath = slash(endpointPath);
+const formatEndpointRawPath = (rawPath: string): string | undefined => {
+	let formattedPath: string | undefined;
 
-	const version = formatEndpointPath.split('/api')[1].split('/')[1];
+	const version = rawPath.split('/api')[1].split('/')[1];
 
-	const endpoint = formatEndpointPath.split('/api')[1].split('/endpoints')[1].split('.').shift();
+	const endpoint = rawPath.split('/api')[1].split('/endpoints')[1].split('.').shift();
 
-	if (version.match(/[v0-9]+/) && endpoint !== undefined) {
-		return `/${version}${endpoint}`;
-	}
+	if (version.match(/[v0-9]+/) && endpoint !== undefined) formattedPath = `/${version}${endpoint}`;
 
-	return '';
+	return formattedPath;
+};
+
+const initEndpoints = async (rawPath: string): Promise<void> => {
+	const endpoint = formatEndpointRawPath(rawPath);
+
+	if (endpoint === undefined) return;
+
+	const middleware = [
+		param('*').notEmpty(),
+		query('*').notEmpty(),
+		body('*').notEmpty(),
+		validateSchema,
+		verifyJWT
+	];
+
+	const { router } = (await import(pathToFileURL(rawPath).toString())) as {
+		router: Router;
+	};
+
+	routing.use(endpoint, middleware, router);
+
+	Log.info(endpoint);
 };
 
 export const loadEndpoints = async (): Promise<Router> => {
-	const endpoints = globSync('**/api/v*/endpoints/**/*.ts');
+	const endpointsRawPaths = globSync('**/api/v*/endpoints/**/*.ts');
 
-	await Promise.all(
-		endpoints?.map(async (endpointPath) => {
-			const importEndpointPath = pathToFileURL(endpointPath).toString();
-			const endpointRoute = formatEndpoint(endpointPath);
-
-			if (endpointRoute !== '') {
-				const endpoint = (await import(importEndpointPath)) as {
-					router: Router;
-				};
-				routing.use(
-					endpointRoute,
-					[
-						param('*').trim().notEmpty().escape(),
-						query('*').trim().notEmpty().escape(),
-						body('*').trim().notEmpty().escape(),
-						validateSchema,
-						verifyJWT
-					],
-					endpoint.router
-				);
-				Log.info(endpointRoute);
-			}
-		})
-	);
+	await Promise.all(endpointsRawPaths?.map(initEndpoints));
 
 	routing.use(errorHandler);
 

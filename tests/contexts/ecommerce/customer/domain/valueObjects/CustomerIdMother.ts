@@ -11,7 +11,11 @@ export class CustomerIdMother {
 		return this.create(UuidMother.random());
 	}
 
-	public static invalid(): string {
-		return 'x';
+	public static invalid(): CustomerId {
+		return this.create('x');
+	}
+
+	public static empty(): CustomerId {
+		return this.create('');
 	}
 }

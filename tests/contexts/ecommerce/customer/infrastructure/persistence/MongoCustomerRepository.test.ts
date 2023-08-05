@@ -22,15 +22,27 @@ describe('MongoCustomerRepository', () => {
 		});
 	});
 
+	describe('#update', () => {
+		it('should update a customer', async () => {
+			const customer = CustomerMother.random();
+
+			await repository.save(customer);
+
+			const customerUpdate = CustomerMother.randomExceptId(customer.id.value);
+
+			await repository.update(customerUpdate);
+		});
+	});
+
 	describe('#search', () => {
 		it('should find a customer', async () => {
 			const customerEmail = CustomerEmailMother.random();
 
-			const customer = CustomerMother.withIdAndUsername(customerEmail.value);
+			const customer = CustomerMother.randomExceptEmail(customerEmail.value);
 
 			await repository.save(customer);
 
-			const customerFound = await repository.search(customerEmail);
+			const customerFound = await repository.search({ email: customerEmail });
 
 			expect(customerFound).toStrictEqual(customer);
 		});

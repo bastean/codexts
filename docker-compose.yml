@@ -7,7 +7,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
     command: mongod --quiet --logpath /dev/null
     ports:
-      - '27017:27017'
+      - ${DB_PORT}:${DB_PORT}
     volumes:
       - codexts-db:/data/db
     restart: always
@@ -19,14 +19,15 @@ services:
       dockerfile: src/apps/ecommerce/backend/Dockerfile
       target: production
     environment:
-      PORT: 3000
-      DB_URI: 'mongodb://${DB_USERNAME}:${DB_PASSWORD}@db:27017/${DB_NAME}?authSource=admin'
+      PORT: ${PORT_BACKEND}
+      DB_URI: 'mongodb://${DB_USERNAME}:${DB_PASSWORD}@db:${DB_PORT}/${DB_NAME}?authSource=admin'
+      JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY}
     ports:
-      - '3000:3000'
+      - ${PORT_BACKEND}:${PORT_BACKEND}
     volumes:
       - codexts-backend:/app/logs
     healthcheck:
-      test: wget --no-verbose --tries=1 --spider backend:3000
+      test: wget --no-verbose --tries=1 --spider backend:${PORT_BACKEND}
       interval: 3s
       timeout: 3s
       retries: 30
@@ -40,11 +41,11 @@ services:
       dockerfile: Dockerfile
       target: production
       args:
-        BACKEND_URL: 'http://localhost:3000/v1'
+        BACKEND_URL: 'http://localhost:${PORT_BACKEND}/v1'
     environment:
-      PORT: 3030
+      PORT: ${PORT_FRONTEND}
     ports:
-      - '3030:3030'
+      - ${PORT_FRONTEND}:${PORT_FRONTEND}
     depends_on:
       backend:
         condition: service_healthy

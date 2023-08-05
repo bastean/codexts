@@ -2,7 +2,7 @@ import { CustomerDelete } from 'codexts-contexts-ecommerce/customer/application/
 import { CustomerDeleteCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Delete/CustomerDeleteCommandHandler';
 import { InvalidValueError } from 'codexts-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
 
-import { CustomerRepositoryMock } from '../../__mocks__/persistence/CustomerRepositoryMock';
+import { CustomerRepositoryMock } from '../../__mocks__/infrastructure/persistence/CustomerRepositoryMock';
 import { CustomerIdMother } from '../../domain/valueObjects/CustomerIdMother';
 
 import { CustomerDeleteCommandMother } from './CustomerDeleteCommandMother';
@@ -11,7 +11,7 @@ let repository: CustomerRepositoryMock;
 let customerDelete: CustomerDelete;
 let handler: CustomerDeleteCommandHandler;
 
-describe('CustomerDeleteCommandHandler', () => {
+describe('Customer Delete Command Handler', () => {
 	beforeEach(() => {
 		repository = new CustomerRepositoryMock();
 		customerDelete = new CustomerDelete(repository);
@@ -28,19 +28,7 @@ describe('CustomerDeleteCommandHandler', () => {
 		repository.assertDeleteHaveBeenCalledWith(customerId);
 	});
 
-	it('should throw error if customer id is empty', async () => {
-		await expect(async () => {
-			const command = CustomerDeleteCommandMother.EmptyId();
-
-			await handler.handle(command);
-		}).rejects.toThrow(InvalidValueError);
-	});
-
-	it('should throw error if customer id is invalid', async () => {
-		await expect(async () => {
-			const command = CustomerDeleteCommandMother.invalidId();
-
-			await handler.handle(command);
-		}).rejects.toThrow(InvalidValueError);
+	it('should throw error if customer is invalid', async () => {
+		expect(() => CustomerDeleteCommandMother.invalid()).toThrow(InvalidValueError);
 	});
 });

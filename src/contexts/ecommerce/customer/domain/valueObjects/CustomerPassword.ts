@@ -4,24 +4,20 @@ import { Password } from '../services/Password';
 import { CustomerPasswordLengthError } from './CustomerPasswordLengthError';
 
 export class CustomerPassword extends StringValueObject {
-	private static isNotHashed: boolean = true;
-
 	private constructor(value: string) {
 		super(value);
-
-		if (CustomerPassword.isNotHashed) this.ensureLengthIsAllowed(value);
 	}
 
 	public static fromPlainToHashed(plain: string): CustomerPassword {
+		CustomerPassword.ensureLengthIsAllowed(plain);
 		return new CustomerPassword(Password.hash(plain));
 	}
 
 	public static fromHashed(hash: string): CustomerPassword {
-		CustomerPassword.isNotHashed = false;
 		return new CustomerPassword(hash);
 	}
 
-	private ensureLengthIsAllowed(password: string): void {
+	private static ensureLengthIsAllowed(password: string): void {
 		const minCharactersLength = 8;
 		const maxCharactersLength = 64;
 

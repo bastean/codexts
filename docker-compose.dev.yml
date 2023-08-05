@@ -21,7 +21,7 @@ services:
       NODE_ENV: development
       PORT: 3000
       DB_URI: 'mongodb://codexts:codexts@db-dev:27017/codexts-dev?authSource=admin'
-      JWT_PRIVATE_KEY: codexts
+      JWT_PRIVATE_KEY: codexts-dev
     ports:
       - '3000:3000'
     volumes:
@@ -40,10 +40,10 @@ services:
       context: src/apps/ecommerce/frontend
       dockerfile: Dockerfile.dev
     environment:
-      PORT: 3030
+      PORT: 4000
       VITE_BACKEND_URL: 'http://localhost:3000/v1'
     ports:
-      - '3030:3030'
+      - '4000:4000'
     volumes:
       - .:/app
     depends_on:

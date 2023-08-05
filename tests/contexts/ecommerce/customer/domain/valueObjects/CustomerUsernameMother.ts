@@ -11,11 +11,15 @@ export class CustomerUsernameMother {
 		return this.create(WordMother.random({ maxLength: 20 }));
 	}
 
-	public static invalidLength(): string {
-		return Math.floor(Math.random() * 10) > 5 ? 'x' : 'x'.repeat(21);
+	public static withInvalidLength(): CustomerUsername {
+		return this.create(Math.floor(Math.random() * 10) > 5 ? 'x' : 'x'.repeat(21));
 	}
 
-	public static invalidAlphanumeric(): string {
-		return '<></>';
+	public static withInvalidAlphanumeric(): CustomerUsername {
+		return this.create('<></>');
+	}
+
+	public static empty(): CustomerUsername {
+		return this.create('');
 	}
 }

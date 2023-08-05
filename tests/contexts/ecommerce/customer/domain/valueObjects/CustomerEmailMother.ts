@@ -11,7 +11,11 @@ export class CustomerEmailMother {
 		return this.create(EmailMother.random());
 	}
 
-	public static invalid(): string {
-		return 'x';
+	public static invalid(): CustomerEmail {
+		return this.create('x');
+	}
+
+	public static empty(): CustomerEmail {
+		return this.create('');
 	}
 }

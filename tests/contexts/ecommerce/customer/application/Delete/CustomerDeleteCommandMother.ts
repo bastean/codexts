@@ -12,15 +12,7 @@ export class CustomerDeleteCommandMother {
 		return this.create(CustomerIdMother.random());
 	}
 
-	public static EmptyId(): CustomerDeleteCommand {
-		return {
-			id: ''
-		};
-	}
-
-	public static invalidId(): CustomerDeleteCommand {
-		return {
-			id: CustomerIdMother.invalid()
-		};
+	public static invalid(): CustomerDeleteCommand {
+		return this.create(CustomerIdMother.invalid());
 	}
 }

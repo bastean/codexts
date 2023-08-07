@@ -1,3 +1,3 @@
-import { EcommerceConfig } from 'codexts-contexts-ecommerce/shared/infrastructure/config/EcommerceConfig';
+import { ConvictConfig } from 'codexts-contexts-ecommerce/shared/infrastructure/config/convict/ConvictConfig';
 
-export const Config = EcommerceConfig;
+export const Config = ConvictConfig;

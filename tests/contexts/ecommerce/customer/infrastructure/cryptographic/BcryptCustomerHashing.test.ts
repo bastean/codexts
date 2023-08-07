@@ -2,7 +2,7 @@ import { BcryptCustomerHashing } from 'codexts-contexts-ecommerce/customer/infra
 
 import { CustomerPasswordMother } from '../../domain/valueObjects/CustomerPasswordMother';
 
-import type { CustomerHashing } from 'codexts-contexts-ecommerce/customer/domain/utils/CustomerHashing';
+import type { CustomerHashing } from 'codexts-contexts-ecommerce/customer/domain/models/CustomerHashing';
 
 const hashing: CustomerHashing = new BcryptCustomerHashing();
 

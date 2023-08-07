@@ -3,8 +3,8 @@ import { Schema, model } from 'mongoose';
 import { Customer } from '../../../domain/aggregate/Customer';
 
 import type { Nullable } from '../../../../shared/domain/types/Nullable';
+import type { CustomerHashing } from '../../../domain/models/CustomerHashing';
 import type { CustomerRepository } from '../../../domain/repository/CustomerRepository';
-import type { CustomerHashing } from '../../../domain/utils/CustomerHashing';
 import type { CustomerEmail } from '../../../domain/valueObjects/CustomerEmail';
 import type { CustomerId } from '../../../domain/valueObjects/CustomerId';
 import type { CustomerUsername } from '../../../domain/valueObjects/CustomerUsername';

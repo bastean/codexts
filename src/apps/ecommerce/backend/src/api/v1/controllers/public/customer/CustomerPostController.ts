@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 
+import { Authentication } from '../../../../../container/Authentication';
 import { CustomerLoginHandler } from '../../../../../container/Customer';
-import { JWT } from '../../../../utils/JWT';
 
 import type { Controller } from '../../../../controller/Controller';
 import type { NextFunction, Response } from 'express';
@@ -21,8 +21,9 @@ export const CustomerPostController: Controller = async (
 	try {
 		const { email, password } = req.body;
 		const response = (await CustomerLoginHandler.handle({ email, password })) as object;
-		const id = JWT.generate((response as { id: string }).id);
-		res.status(httpStatus.OK).json({ ...response, id });
+		const token = Authentication.generateToken((response as { id: string }).id);
+		res.header('Authorization', `Bearer ${token}`);
+		res.status(httpStatus.OK).json(response);
 	} catch (error) {
 		next(error);
 	}

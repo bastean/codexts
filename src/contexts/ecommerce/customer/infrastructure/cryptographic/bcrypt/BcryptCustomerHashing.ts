@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 
-import type { CustomerHashing } from '../../../domain/utils/CustomerHashing';
+import type { CustomerHashing } from '../../../domain/models/CustomerHashing';
 
 export class BcryptCustomerHashing implements CustomerHashing {
 	public hash(plain: string): string {

@@ -1,5 +1,5 @@
 import { asClass, createContainer } from 'awilix';
-import { WinstonLogger } from 'codexts-contexts-ecommerce/shared/infrastructure/logger/WinstonLogger';
+import { WinstonLogger } from 'codexts-contexts-ecommerce/shared/infrastructure/logger/winston/WinstonLogger';
 
 import type { Logger } from 'codexts-contexts-ecommerce/shared/domain/models/Logger';
 

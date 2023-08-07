@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 
-import type { CustomerHashing } from 'codexts-contexts-ecommerce/customer/domain/utils/CustomerHashing';
+import type { CustomerHashing } from 'codexts-contexts-ecommerce/customer/domain/models/CustomerHashing';
 
 export class CustomerHashingMock implements CustomerHashing {
 	private readonly hashMock: jest.Mock;

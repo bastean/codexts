@@ -1,9 +1,9 @@
 import winston from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 
-import { EcommerceConfig } from '../config/EcommerceConfig';
+import { ConvictConfig } from '../../config/convict/ConvictConfig';
 
-import type { Logger } from '../../domain/models/Logger';
+import type { Logger } from '../../../domain/models/Logger';
 import type { Logger as WinstonLoggerType } from 'winston';
 
 enum Levels {
@@ -23,7 +23,7 @@ const dailyRotateFileConfig = (level: string) => ({
 	zippedArchive: true,
 	format: combine(
 		label({
-			label: `${EcommerceConfig.get('env')}`
+			label: `${ConvictConfig.get('env')}`
 		}),
 		timestamp(),
 		json()
@@ -52,7 +52,7 @@ export class WinstonLogger implements Logger {
 							format: 'YYYY-MM-DD hh:mm:ss.SSS A'
 						}),
 						label({
-							label: `${EcommerceConfig.get('env')}`
+							label: `${ConvictConfig.get('env')}`
 						}),
 						printf(
 							(info) =>

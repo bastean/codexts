@@ -1,5 +1,5 @@
 import { MongoCustomerRepository } from 'codexts-contexts-ecommerce/customer/infrastructure/persistence/mongo/MongoCustomerRepository';
-import { EcommerceConfig } from 'codexts-contexts-ecommerce/shared/infrastructure/config/EcommerceConfig';
+import { ConvictConfig } from 'codexts-contexts-ecommerce/shared/infrastructure/config/convict/ConvictConfig';
 import { connect, disconnect } from 'mongoose';
 
 import { CustomerHashingMock } from '../../__mocks__/infrastructure/cryptographic/CustomerHashingMock';
@@ -13,7 +13,7 @@ const repository: CustomerRepository = new MongoCustomerRepository(hashing);
 
 describe('Mongo Customer Repository', () => {
 	beforeAll(async () => {
-		await connect(EcommerceConfig.get('db.uri'));
+		await connect(ConvictConfig.get('db.uri'));
 	});
 
 	describe('#save', () => {

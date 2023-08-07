@@ -9,26 +9,12 @@ import convictFormatWithValidator from 'convict-format-with-validator';
 
 convict.addFormats(convictFormatWithValidator);
 
-export const EcommerceConfig = convict({
+export const ConvictConfig = convict({
 	env: {
 		doc: 'Application environment',
 		format: ['production', 'development', 'test'],
 		default: 'development',
 		env: 'NODE_ENV'
-	},
-	backend: {
-		port: {
-			doc: 'Backend port to bind',
-			format: 'port',
-			default: 3000,
-			env: 'PORT'
-		},
-		jwtPrivateKey: {
-			doc: 'JWT Private Key',
-			format: '*',
-			default: '',
-			env: 'JWT_PRIVATE_KEY'
-		}
 	},
 	db: {
 		uri: {
@@ -37,9 +23,25 @@ export const EcommerceConfig = convict({
 			default: '',
 			env: 'DB_URI'
 		}
+	},
+	jwt: {
+		privateKey: {
+			doc: 'JWT Private Key',
+			format: '*',
+			default: '',
+			env: 'JWT_PRIVATE_KEY'
+		}
+	},
+	backend: {
+		port: {
+			doc: 'Backend port to bind',
+			format: 'port',
+			default: 3000,
+			env: 'PORT'
+		}
 	}
 });
 
-// EcommerceConfig.loadFile(`${dirname(import.meta.url)}${filename(EcommerceConfig.get('env'))}`);
+// ConvictConfig.loadFile(`${dirname(import.meta.url)}${filename(ConvictConfig.get('env'))}`);
 
-// EcommerceConfig.validate({ allowed: 'strict' });
+// ConvictConfig.validate({ allowed: 'strict' });

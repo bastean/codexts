@@ -1,8 +1,8 @@
 import { CustomerNotExistError } from '../../domain/errors/CustomerNotExistError';
 
 import type { Customer } from '../../domain/aggregate/Customer';
+import type { CustomerHashing } from '../../domain/models/CustomerHashing';
 import type { CustomerRepository } from '../../domain/repository/CustomerRepository';
-import type { CustomerHashing } from '../../domain/utils/CustomerHashing';
 import type { CustomerEmail } from '../../domain/valueObjects/CustomerEmail';
 import type { CustomerPassword } from '../../domain/valueObjects/CustomerPassword';
 

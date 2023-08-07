@@ -2,14 +2,16 @@ import { MongoCustomerRepository } from 'codexts-contexts-ecommerce/customer/inf
 import { EcommerceConfig } from 'codexts-contexts-ecommerce/shared/infrastructure/config/EcommerceConfig';
 import { connect, disconnect } from 'mongoose';
 
+import { CustomerHashingMock } from '../../__mocks__/infrastructure/cryptographic/CustomerHashingMock';
 import { CustomerMother } from '../../domain/aggregate/CustomerMother';
 import { CustomerEmailMother } from '../../domain/valueObjects/CustomerEmailMother';
 
 import type { CustomerRepository } from 'codexts-contexts-ecommerce/customer/domain/repository/CustomerRepository';
 
-const repository: CustomerRepository = new MongoCustomerRepository();
+const hashing: CustomerHashingMock = new CustomerHashingMock();
+const repository: CustomerRepository = new MongoCustomerRepository(hashing);
 
-describe('MongoCustomerRepository', () => {
+describe('Mongo Customer Repository', () => {
 	beforeAll(async () => {
 		await connect(EcommerceConfig.get('db.uri'));
 	});
@@ -30,12 +32,12 @@ describe('MongoCustomerRepository', () => {
 
 			const customerUpdate = CustomerMother.randomExceptId(customer.id.value);
 
-			await repository.update(customerUpdate);
+			await repository.update(customerUpdate.toPrimitives());
 		});
 	});
 
 	describe('#search', () => {
-		it('should find a customer', async () => {
+		it('should search a customer', async () => {
 			const customerEmail = CustomerEmailMother.random();
 
 			const customer = CustomerMother.randomExceptEmail(customerEmail.value);
@@ -43,6 +45,8 @@ describe('MongoCustomerRepository', () => {
 			await repository.save(customer);
 
 			const customerFound = await repository.search({ email: customerEmail });
+
+			hashing.assertHashHaveBeenCalledWith(customer.password.value);
 
 			expect(customerFound).toStrictEqual(customer);
 		});

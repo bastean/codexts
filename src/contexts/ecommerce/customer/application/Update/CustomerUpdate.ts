@@ -1,4 +1,3 @@
-import { Customer } from '../../domain/aggregate/Customer';
 import { CustomerAlreadyExistError } from '../../domain/errors/CustomerAlreadyExistError';
 import { CustomerNotExistError } from '../../domain/errors/CustomerNotExistError';
 import { CustomerEmail } from '../../domain/valueObjects/CustomerEmail';
@@ -37,16 +36,11 @@ export class CustomerUpdate {
 			throw new CustomerAlreadyExistError('Username already registered');
 		}
 
-		const customer = Customer.fromPrimitives({
-			id,
-			email: email !== undefined ? email : customerAlreadyRegistered.email.value,
-			username: username !== undefined ? username : customerAlreadyRegistered.username.value,
-			password:
-				password !== undefined
-					? CustomerPassword.fromPlainToHashed(password).value
-					: customerAlreadyRegistered.password.value
+		await this.repository.update({
+			id: new CustomerId(id).value,
+			email: email !== undefined ? new CustomerEmail(email).value : email,
+			username: username !== undefined ? new CustomerUsername(username).value : username,
+			password: password !== undefined ? new CustomerPassword(password).value : password
 		});
-
-		await this.repository.update(customer);
 	}
 }

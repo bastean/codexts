@@ -6,6 +6,7 @@ import { CustomerUsernameMother } from '../../domain/valueObjects/CustomerUserna
 import type { CustomerUpdateCommand } from 'codexts-contexts-ecommerce/customer/application/Update/CustomerUpdateCommand';
 import type { CustomerEmail } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerEmail';
 import type { CustomerId } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerId';
+import type { CustomerPassword } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerPassword';
 import type { CustomerUsername } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerUsername';
 
 export class CustomerUpdateCommandMother {
@@ -13,9 +14,14 @@ export class CustomerUpdateCommandMother {
 		id: CustomerId,
 		email?: CustomerEmail | undefined,
 		username?: CustomerUsername | undefined,
-		password?: string | undefined
+		password?: CustomerPassword | undefined
 	): CustomerUpdateCommand {
-		return { id: id.value, email: email?.value, username: username?.value, password };
+		return {
+			id: id.value,
+			email: email?.value,
+			username: username?.value,
+			password: password?.value
+		};
 	}
 
 	public static random(): CustomerUpdateCommand {
@@ -23,7 +29,7 @@ export class CustomerUpdateCommandMother {
 			CustomerIdMother.random(),
 			CustomerEmailMother.random(),
 			CustomerUsernameMother.random(),
-			CustomerPasswordMother.plainRandom()
+			CustomerPasswordMother.random()
 		);
 	}
 
@@ -32,7 +38,7 @@ export class CustomerUpdateCommandMother {
 			CustomerIdMother.invalid(),
 			CustomerEmailMother.invalid(),
 			CustomerUsernameMother.withInvalidLength(),
-			CustomerPasswordMother.plainWithInvalidLength()
+			CustomerPasswordMother.withInvalidLength()
 		);
 	}
 

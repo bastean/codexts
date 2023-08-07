@@ -1,19 +1,23 @@
 import { CustomerNotExistError } from '../../domain/errors/CustomerNotExistError';
-import { Password } from '../../domain/services/Password';
 
 import type { Customer } from '../../domain/aggregate/Customer';
 import type { CustomerRepository } from '../../domain/repository/CustomerRepository';
+import type { CustomerHashing } from '../../domain/utils/CustomerHashing';
 import type { CustomerEmail } from '../../domain/valueObjects/CustomerEmail';
+import type { CustomerPassword } from '../../domain/valueObjects/CustomerPassword';
 
 export class CustomerLogin {
-	public constructor(private readonly repository: CustomerRepository) {}
+	public constructor(
+		private readonly repository: CustomerRepository,
+		private readonly hashing: CustomerHashing
+	) {}
 
-	public async run(email: CustomerEmail, password: string): Promise<Customer> {
+	public async run(email: CustomerEmail, password: CustomerPassword): Promise<Customer> {
 		const registeredCustomer = await this.repository.search({ email });
 
 		if (!registeredCustomer) throw new CustomerNotExistError('Email not found');
 
-		if (Password.isNotEqual(password, registeredCustomer.password)) {
+		if (this.hashing.isNotEqual(password.value, registeredCustomer.password.value)) {
 			throw new CustomerNotExistError('Incorrect Password');
 		}
 

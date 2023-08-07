@@ -18,7 +18,7 @@ export class Customer implements AggregateRoot {
 			new CustomerId(id),
 			new CustomerEmail(email),
 			new CustomerUsername(username),
-			CustomerPassword.fromPlainToHashed(password)
+			new CustomerPassword(password)
 		);
 	}
 
@@ -32,7 +32,7 @@ export class Customer implements AggregateRoot {
 			new CustomerId(plainData.id),
 			new CustomerEmail(plainData.email),
 			new CustomerUsername(plainData.username),
-			CustomerPassword.fromHashed(plainData.password)
+			new CustomerPassword(plainData.password)
 		);
 	}
 

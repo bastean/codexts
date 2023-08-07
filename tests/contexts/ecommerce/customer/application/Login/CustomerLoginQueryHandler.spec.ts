@@ -4,40 +4,50 @@ import { CustomerLoginResponse } from 'codexts-contexts-ecommerce/customer/appli
 import { CustomerNotExistError } from 'codexts-contexts-ecommerce/customer/domain/errors/CustomerNotExistError';
 import { InvalidValueError } from 'codexts-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
 
+import { CustomerHashingMock } from '../../__mocks__/infrastructure/cryptographic/CustomerHashingMock';
 import { CustomerRepositoryMock } from '../../__mocks__/infrastructure/persistence/CustomerRepositoryMock';
 import { CustomerMother } from '../../domain/aggregate/CustomerMother';
 import { CustomerEmailMother } from '../../domain/valueObjects/CustomerEmailMother';
-import { CustomerPasswordMother } from '../../domain/valueObjects/CustomerPasswordMother';
 
 import { CustomerLoginQueryMother } from './CustomerLoginQueryMother';
 
+let hashing: CustomerHashingMock;
 let repository: CustomerRepositoryMock;
 let login: CustomerLogin;
 let handler: CustomerLoginQueryHandler;
 
 describe('Customer Login Query Handler', () => {
 	it('should login a valid customer', async () => {
-		const plainPassword = CustomerPasswordMother.plainRandom();
-		const customerForReturn = CustomerMother.randomExceptPassword(plainPassword);
+		const customerForReturn = CustomerMother.random();
 
+		hashing = new CustomerHashingMock();
 		repository = new CustomerRepositoryMock({
 			search: { canReturnCustomerNotFound: true, customerForReturn }
 		});
-		login = new CustomerLogin(repository);
+		login = new CustomerLogin(repository, hashing);
 		handler = new CustomerLoginQueryHandler(login);
 
-		const query = CustomerLoginQueryMother.create(customerForReturn.email, plainPassword);
+		const query = CustomerLoginQueryMother.create(
+			customerForReturn.email,
+			customerForReturn.password
+		);
 
 		const customerFound = await handler.handle(query);
 
 		repository.assertSearchHaveBeenCalledWith({ email: customerForReturn.email });
 
+		hashing.assertIsNotEqualHaveBeenCalledWith(
+			customerForReturn.password.value,
+			customerForReturn.password.value
+		);
+
 		expect(customerFound).toBeInstanceOf(CustomerLoginResponse);
 	});
 
 	beforeEach(() => {
+		hashing = new CustomerHashingMock();
 		repository = new CustomerRepositoryMock();
-		login = new CustomerLogin(repository);
+		login = new CustomerLogin(repository, hashing);
 		handler = new CustomerLoginQueryHandler(login);
 	});
 

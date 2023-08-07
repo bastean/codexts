@@ -1,23 +1,15 @@
 import { StringValueObject } from '../../../shared/domain/valueObjects/StringValueObject';
-import { Password } from '../services/Password';
 
 import { CustomerPasswordLengthError } from './CustomerPasswordLengthError';
 
 export class CustomerPassword extends StringValueObject {
-	private constructor(value: string) {
+	public constructor(value: string) {
 		super(value);
+
+		this.ensureLengthIsAllowed(this.value);
 	}
 
-	public static fromPlainToHashed(plain: string): CustomerPassword {
-		CustomerPassword.ensureLengthIsAllowed(plain);
-		return new CustomerPassword(Password.hash(plain));
-	}
-
-	public static fromHashed(hash: string): CustomerPassword {
-		return new CustomerPassword(hash);
-	}
-
-	private static ensureLengthIsAllowed(password: string): void {
+	private ensureLengthIsAllowed(password: string): void {
 		const minCharactersLength = 8;
 		const maxCharactersLength = 64;
 

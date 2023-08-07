@@ -1,4 +1,5 @@
 import { CustomerEmail } from '../../domain/valueObjects/CustomerEmail';
+import { CustomerPassword } from '../../domain/valueObjects/CustomerPassword';
 
 import { CustomerLoginResponse } from './CustomerLoginResponse';
 
@@ -13,8 +14,9 @@ export class CustomerLoginQueryHandler
 
 	public async handle({ email, password }: CustomerLoginQuery): Promise<CustomerLoginResponse> {
 		const customerEmail = new CustomerEmail(email);
+		const customerPassword = new CustomerPassword(password);
 
-		const customer = await this.customerLogin.run(customerEmail, password);
+		const customer = await this.customerLogin.run(customerEmail, customerPassword);
 
 		const response = new CustomerLoginResponse(customer.toPrimitives());
 

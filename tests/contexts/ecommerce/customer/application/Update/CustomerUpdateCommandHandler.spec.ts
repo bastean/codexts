@@ -23,7 +23,7 @@ describe('Customer Update Command Handler', () => {
 
 		await handler.handle(command);
 
-		repository.assertUpdateHaveBeenCalled();
+		repository.assertUpdateHaveBeenCalledWith(command);
 	});
 
 	it('should throw error if customer is invalid', async () => {

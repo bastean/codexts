@@ -7,6 +7,7 @@ import { CustomerRegister } from 'codexts-contexts-ecommerce/customer/applicatio
 import { CustomerRegisterCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Register/CustomerRegisterCommandHandler';
 import { CustomerUpdate } from 'codexts-contexts-ecommerce/customer/application/Update/CustomerUpdate';
 import { CustomerUpdateCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Update/CustomerUpdateCommandHandler';
+import { BcryptCustomerHashing } from 'codexts-contexts-ecommerce/customer/infrastructure/cryptographic/bcrypt/BcryptCustomerHashing';
 import { MongoCustomerRepository } from 'codexts-contexts-ecommerce/customer/infrastructure/persistence/mongo/MongoCustomerRepository';
 
 const container = createContainer({
@@ -17,6 +18,7 @@ const container = createContainer({
 	customerDelete: asClass(CustomerDelete),
 	customerLogin: asClass(CustomerLogin),
 	repository: asClass(MongoCustomerRepository).singleton(),
+	hashing: asClass(BcryptCustomerHashing).singleton(),
 	customerRegisterHandler: asClass(CustomerRegisterCommandHandler),
 	customerUpdateHandler: asClass(CustomerUpdateCommandHandler),
 	customerDeleteHandler: asClass(CustomerDeleteCommandHandler),

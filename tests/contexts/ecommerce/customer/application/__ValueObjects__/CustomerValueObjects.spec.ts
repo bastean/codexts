@@ -47,13 +47,11 @@ describe('Customer Value Objects', () => {
 
 	describe('Customer Password', () => {
 		it('should throw error if customer password is empty', async () => {
-			expect(() => CustomerPasswordMother.hashedEmpty()).toThrow(CustomerPasswordLengthError);
+			expect(() => CustomerPasswordMother.empty()).toThrow(CustomerPasswordLengthError);
 		});
 
 		it('should throw error if customer password length is invalid', async () => {
-			expect(() => CustomerPasswordMother.hashedWithInvalidLength()).toThrow(
-				CustomerPasswordLengthError
-			);
+			expect(() => CustomerPasswordMother.withInvalidLength()).toThrow(CustomerPasswordLengthError);
 		});
 	});
 });

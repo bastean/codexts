@@ -6,7 +6,12 @@ import type { CustomerUsername } from '../valueObjects/CustomerUsername';
 
 export interface CustomerRepository {
 	save(customer: Customer): Promise<void>;
-	update(customer: Customer): Promise<void>;
+	update(customer: {
+		id: string;
+		email?: string;
+		username?: string;
+		password?: string;
+	}): Promise<void>;
 	delete(id: CustomerId): Promise<void>;
 	search({
 		id,

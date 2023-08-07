@@ -44,19 +44,29 @@ export class CustomerRepositoryMock implements CustomerRepository {
 		});
 	}
 
-	public assertSaveHaveBeenCalled(): void {
-		expect(this.saveMock).toHaveBeenCalled();
+	public assertSaveHaveBeenCalledWith(expected: Customer): void {
+		expect(this.saveMock).toHaveBeenCalledWith(expected);
 	}
 
-	public update(customer: Customer): Promise<void> {
+	public update(customer: {
+		id: string;
+		email?: string;
+		username?: string;
+		password?: string;
+	}): Promise<void> {
 		return new Promise((resolve) => {
 			this.updateMock(customer);
 			resolve();
 		});
 	}
 
-	public assertUpdateHaveBeenCalled(): void {
-		expect(this.updateMock).toHaveBeenCalled();
+	public assertUpdateHaveBeenCalledWith(expected: {
+		id: string;
+		email?: string;
+		username?: string;
+		password?: string;
+	}): void {
+		expect(this.updateMock).toHaveBeenCalledWith(expected);
 	}
 
 	public delete(id: CustomerId): Promise<void> {

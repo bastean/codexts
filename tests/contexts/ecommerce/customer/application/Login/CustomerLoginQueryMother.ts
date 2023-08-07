@@ -3,20 +3,18 @@ import { CustomerPasswordMother } from '../../domain/valueObjects/CustomerPasswo
 
 import type { CustomerLoginQuery } from 'codexts-contexts-ecommerce/customer/application/Login/CustomerLoginQuery';
 import type { CustomerEmail } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerEmail';
+import type { CustomerPassword } from 'codexts-contexts-ecommerce/customer/domain/valueObjects/CustomerPassword';
 
 export class CustomerLoginQueryMother {
-	public static create(email: CustomerEmail, password: string): CustomerLoginQuery {
-		return { email: email.value, password };
+	public static create(email: CustomerEmail, password: CustomerPassword): CustomerLoginQuery {
+		return { email: email.value, password: password.value };
 	}
 
 	public static random(): CustomerLoginQuery {
-		return this.create(CustomerEmailMother.random(), CustomerPasswordMother.plainRandom());
+		return this.create(CustomerEmailMother.random(), CustomerPasswordMother.random());
 	}
 
 	public static invalid(): CustomerLoginQuery {
-		return this.create(
-			CustomerEmailMother.invalid(),
-			CustomerPasswordMother.plainWithInvalidLength()
-		);
+		return this.create(CustomerEmailMother.invalid(), CustomerPasswordMother.withInvalidLength());
 	}
 }

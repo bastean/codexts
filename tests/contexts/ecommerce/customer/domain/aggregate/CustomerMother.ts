@@ -35,7 +35,7 @@ export class CustomerMother {
 			CustomerIdMother.invalid(),
 			CustomerEmailMother.invalid(),
 			CustomerUsernameMother.withInvalidLength(),
-			CustomerPasswordMother.hashedWithInvalidLength()
+			CustomerPasswordMother.withInvalidLength()
 		);
 	}
 
@@ -44,7 +44,7 @@ export class CustomerMother {
 			CustomerIdMother.random(),
 			CustomerEmailMother.random(),
 			CustomerUsernameMother.random(),
-			CustomerPasswordMother.hashedRandom()
+			CustomerPasswordMother.random()
 		);
 	}
 
@@ -53,7 +53,7 @@ export class CustomerMother {
 			CustomerIdMother.create(id),
 			CustomerEmailMother.random(),
 			CustomerUsernameMother.random(),
-			CustomerPasswordMother.hashedRandom()
+			CustomerPasswordMother.random()
 		);
 	}
 
@@ -62,7 +62,7 @@ export class CustomerMother {
 			CustomerIdMother.random(),
 			CustomerEmailMother.create(email),
 			CustomerUsernameMother.random(),
-			CustomerPasswordMother.hashedRandom()
+			CustomerPasswordMother.random()
 		);
 	}
 
@@ -71,7 +71,7 @@ export class CustomerMother {
 			CustomerIdMother.random(),
 			CustomerEmailMother.random(),
 			CustomerUsernameMother.create(username),
-			CustomerPasswordMother.hashedRandom()
+			CustomerPasswordMother.random()
 		);
 	}
 

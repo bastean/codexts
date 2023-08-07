@@ -24,7 +24,7 @@ export class CustomerRegisterCommandMother {
 			CustomerIdMother.random(),
 			CustomerEmailMother.random(),
 			CustomerUsernameMother.random(),
-			CustomerPasswordMother.hashedRandom()
+			CustomerPasswordMother.random()
 		);
 	}
 
@@ -33,7 +33,7 @@ export class CustomerRegisterCommandMother {
 			CustomerIdMother.invalid(),
 			CustomerEmailMother.invalid(),
 			CustomerUsernameMother.withInvalidLength(),
-			CustomerPasswordMother.hashedWithInvalidLength()
+			CustomerPasswordMother.withInvalidLength()
 		);
 	}
 }

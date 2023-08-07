@@ -4,6 +4,7 @@ import { CustomerAlreadyExistError } from 'codexts-contexts-ecommerce/customer/d
 import { InvalidValueError } from 'codexts-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
 
 import { CustomerRepositoryMock } from '../../__mocks__/infrastructure/persistence/CustomerRepositoryMock';
+import { CustomerMother } from '../../domain/aggregate/CustomerMother';
 
 import { CustomerRegisterCommandMother } from './CustomerRegisterCommandMother';
 
@@ -21,9 +22,11 @@ describe('Customer Register Command Handler', () => {
 	it('should register a valid customer', async () => {
 		const command = CustomerRegisterCommandMother.random();
 
+		const customer = CustomerMother.fromCommand(command);
+
 		await handler.handle(command);
 
-		repository.assertSaveHaveBeenCalled();
+		repository.assertSaveHaveBeenCalledWith(customer);
 	});
 
 	it('should throw error if customer is invalid', async () => {

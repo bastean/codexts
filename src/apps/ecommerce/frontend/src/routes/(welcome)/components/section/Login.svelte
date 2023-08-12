@@ -1,21 +1,19 @@
 <script lang="ts">
 	import Form from '$lib/components/form/Form.svelte';
 	import Input from '$lib/components/form/Input.svelte';
-	import { onSubmitHandler } from '$lib/contexts/customer/application/CustomerRegister';
+	import { onSubmitHandler } from '$lib/contexts/customer/application/CustomerLogin';
 	import { CustomerInputSchema } from '$lib/contexts/customer/schemas/CustomerInputSchema';
 
 	const schemaToValidate = CustomerInputSchema.create({
 		email: CustomerInputSchema.email().required(),
-		username: CustomerInputSchema.username().required(),
-		password: CustomerInputSchema.password().required(),
-		confirmPassword: CustomerInputSchema.confirmPassword().required()
+		password: CustomerInputSchema.password().required()
 	});
 </script>
 
 <Form
 	{schemaToValidate}
 	{onSubmitHandler}
-	submitButton="Register"
+	submitButton="Login"
 >
 	<Input
 		name="email"
@@ -24,20 +22,8 @@
 	/>
 
 	<Input
-		name="username"
-		type="text"
-		placeholder="Username"
-	/>
-
-	<Input
 		name="password"
 		type="password"
 		placeholder="Password"
-	/>
-
-	<Input
-		name="confirmPassword"
-		type="password"
-		placeholder="Confirm Password"
 	/>
 </Form>

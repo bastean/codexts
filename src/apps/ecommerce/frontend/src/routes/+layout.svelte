@@ -1,5 +1,8 @@
 <script lang="ts">
 	import '../app.css';
+	import 'tippy.js/dist/tippy.css';
+	import 'tippy.js/animations/scale.css';
+
 	import { afterUpdate, onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { themeChange } from 'theme-change';
@@ -37,7 +40,7 @@
 			<option disabled>Theme</option>
 			<option
 				selected
-				value="night">Default</option
+				value="dark">Default</option
 			>
 			<option value="light">Light</option>
 			<option value="dark">Dark</option>

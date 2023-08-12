@@ -1,7 +1,6 @@
 <script lang="ts">
 	import TechStack from './components/footer/TechStack.svelte';
-	import Delete from './components/section/Delete.svelte';
-	import Find from './components/section/Find.svelte';
+	import Login from './components/section/Login.svelte';
 	import Register from './components/section/Register.svelte';
 
 	let currentChecked = 'Register';
@@ -29,26 +28,16 @@
 				bind:group={currentChecked}
 				type="radio"
 				name="options"
-				aria-label="FIND"
-				value="Find"
-				class="join-item btn"
-			/>
-			<input
-				bind:group={currentChecked}
-				type="radio"
-				name="options"
-				aria-label="DELETE"
-				value="Delete"
+				aria-label="LOGIN"
+				value="Login"
 				class="join-item btn"
 			/>
 		</form>
 
 		{#if currentChecked === 'Register'}
 			<Register />
-		{:else if currentChecked === 'Find'}
-			<Find />
-		{:else}
-			<Delete />
+		{:else if currentChecked === 'Login'}
+			<Login />
 		{/if}
 
 		<TechStack />

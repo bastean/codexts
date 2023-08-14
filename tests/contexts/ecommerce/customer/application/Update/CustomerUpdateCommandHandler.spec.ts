@@ -3,18 +3,21 @@ import { CustomerUpdateCommandHandler } from 'codexts-contexts-ecommerce/custome
 import { CustomerAlreadyExistError } from 'codexts-contexts-ecommerce/customer/domain/errors/CustomerAlreadyExistError';
 import { InvalidValueError } from 'codexts-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
 
+import { CustomerHashingMock } from '../../__mocks__/infrastructure/cryptographic/CustomerHashingMock';
 import { CustomerRepositoryMock } from '../../__mocks__/infrastructure/persistence/CustomerRepositoryMock';
 
 import { CustomerUpdateCommandMother } from './CustomerUpdateCommandMother';
 
+let hashing: CustomerHashingMock;
 let repository: CustomerRepositoryMock;
 let update: CustomerUpdate;
 let handler: CustomerUpdateCommandHandler;
 
 describe('Customer Update Command Handler', () => {
 	beforeEach(() => {
+		hashing = new CustomerHashingMock();
 		repository = new CustomerRepositoryMock({ search: { canReturnCustomerNotFound: false } });
-		update = new CustomerUpdate(repository);
+		update = new CustomerUpdate(repository, hashing);
 		handler = new CustomerUpdateCommandHandler(update);
 	});
 
@@ -32,8 +35,9 @@ describe('Customer Update Command Handler', () => {
 
 	it('should throw error if customer is already registered', async () => {
 		await expect(async () => {
+			hashing = new CustomerHashingMock();
 			repository = new CustomerRepositoryMock({ search: { canReturnCustomerNotFound: false } });
-			update = new CustomerUpdate(repository);
+			update = new CustomerUpdate(repository, hashing);
 			handler = new CustomerUpdateCommandHandler(update);
 
 			const command = CustomerUpdateCommandMother.random();

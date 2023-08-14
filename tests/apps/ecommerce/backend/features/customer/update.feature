@@ -37,7 +37,8 @@ Feature: Update a existing customer
       {
         "email": "updated@test.com",
         "username": "updated",
-        "password": "12345678"
+        "currentPassword": "12345678",
+        "updatedPassword": "87654321"
       }
       """
     Then the response status code should be 200
@@ -50,7 +51,8 @@ Feature: Update a existing customer
       {
         "email": "updated@test.com",
         "username": "updated",
-        "password": "12345678"
+        "currentPassword": "12345678",
+        "updatedPassword": "87654321"
       }
       """
     And the response status code should be 422

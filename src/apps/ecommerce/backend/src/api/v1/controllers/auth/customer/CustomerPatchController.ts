@@ -9,7 +9,8 @@ type PatchRequest = {
 	body: {
 		email?: string;
 		username?: string;
-		password?: string;
+		currentPassword?: string;
+		updatedPassword?: string;
 	};
 };
 
@@ -19,12 +20,13 @@ export const CustomerPatchController: Controller = async (
 	next: NextFunction
 ) => {
 	try {
-		const { email, username, password } = req.body;
+		const { email, username, currentPassword, updatedPassword } = req.body;
 		await CustomerUpdateHandler.handle({
 			id: (req as Request & { id: string }).id,
 			email,
 			username,
-			password
+			currentPassword,
+			updatedPassword
 		});
 		res.status(httpStatus.OK).json();
 	} catch (error) {

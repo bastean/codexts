@@ -42,8 +42,10 @@ Given('I send a PATCH request to {string} with body:', async (endpoint: string, 
 	});
 });
 
-Given('I send a DELETE request to {string}', async (endpoint: string) => {
-	apiResponse = await apiRequest.delete(`/v1${endpoint}`);
+Given('I send a DELETE request to {string} with body:', async (endpoint: string, data: string) => {
+	apiResponse = await apiRequest.delete(`/v1${endpoint}`, {
+		data: JSON.parse(data) as object
+	});
 });
 
 Given('I do not have the required authorization token', async () => {

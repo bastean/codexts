@@ -14,13 +14,15 @@ export class CustomerUpdateCommandMother {
 		id: CustomerId,
 		email?: CustomerEmail | undefined,
 		username?: CustomerUsername | undefined,
-		password?: CustomerPassword | undefined
+		currentPassword?: CustomerPassword | undefined,
+		updatedPassword?: CustomerPassword | undefined
 	): CustomerUpdateCommand {
 		return {
 			id: id.value,
 			email: email?.value,
 			username: username?.value,
-			password: password?.value
+			currentPassword: currentPassword?.value,
+			updatedPassword: updatedPassword?.value
 		};
 	}
 
@@ -29,6 +31,7 @@ export class CustomerUpdateCommandMother {
 			CustomerIdMother.random(),
 			CustomerEmailMother.random(),
 			CustomerUsernameMother.random(),
+			CustomerPasswordMother.random(),
 			CustomerPasswordMother.random()
 		);
 	}
@@ -38,6 +41,7 @@ export class CustomerUpdateCommandMother {
 			CustomerIdMother.invalid(),
 			CustomerEmailMother.invalid(),
 			CustomerUsernameMother.withInvalidLength(),
+			CustomerPasswordMother.withInvalidLength(),
 			CustomerPasswordMother.withInvalidLength()
 		);
 	}

@@ -5,8 +5,8 @@ Feature: Login a existing customer
       """
       {
         "id": "00000000-0000-4000-0000-000000000002",
-        "email": "login@test.com",
-        "username": "login",
+        "email": "login@backend.com",
+        "username": "loginBackend",
         "password": "12345678"
       }
       """
@@ -17,7 +17,7 @@ Feature: Login a existing customer
     Given I send a POST request to "/public/customer" with body:
       """
       {
-        "email": "login@test.com",
+        "email": "login@backend.com",
         "password": "12345678"
       }
       """
@@ -26,8 +26,8 @@ Feature: Login a existing customer
       """
       {
         "id": "00000000-0000-4000-0000-000000000002",
-        "email": "login@test.com",
-        "username": "login"
+        "email": "login@backend.com",
+        "username": "loginBackend"
       }
       """
 
@@ -35,7 +35,7 @@ Feature: Login a existing customer
     Given I send a POST request to "/public/customer" with body:
       """
       {
-        "email": "non-existing@test.com",
+        "email": "non-existing@backend.com",
         "password": "12345678"
       }
       """

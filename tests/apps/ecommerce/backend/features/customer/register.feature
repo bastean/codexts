@@ -5,8 +5,8 @@ Feature: Register a new customer
       """
       {
         "id": "00000000-0000-4000-0000-000000000001",
-        "email": "register@test.com",
-        "username": "register",
+        "email": "register@backend.com",
+        "username": "registerBackend",
         "password": "12345678"
       }
       """

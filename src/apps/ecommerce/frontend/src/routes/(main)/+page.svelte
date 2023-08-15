@@ -5,6 +5,10 @@
 	import { CustomerJWTStore } from '$lib/contexts/customer/stores/CustomerJWTStore';
 </script>
 
+<svelte:head>
+	<title>codexts</title>
+</svelte:head>
+
 {#if $CustomerJWTStore}
 	<Dashboard />
 {:else}

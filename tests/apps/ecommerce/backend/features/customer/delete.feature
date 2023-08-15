@@ -5,8 +5,8 @@ Feature: Delete a existing customer
       """
       {
         "id": "00000000-0000-4000-0000-000000000004",
-        "email": "delete@test.com",
-        "username": "delete",
+        "email": "delete@backend.com",
+        "username": "deleteBackend",
         "password": "12345678"
       }
       """
@@ -17,7 +17,7 @@ Feature: Delete a existing customer
     Given I send a POST request to "/public/customer" with body:
       """
       {
-        "email": "delete@test.com",
+        "email": "delete@backend.com",
         "password": "12345678"
       }
       """
@@ -26,8 +26,8 @@ Feature: Delete a existing customer
       """
       {
         "id": "00000000-0000-4000-0000-000000000004",
-        "email": "delete@test.com",
-        "username": "delete"
+        "email": "delete@backend.com",
+        "username": "deleteBackend"
       }
       """
 

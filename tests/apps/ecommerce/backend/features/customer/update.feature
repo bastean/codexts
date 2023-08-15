@@ -5,8 +5,8 @@ Feature: Update a existing customer
       """
       {
         "id": "00000000-0000-4000-0000-000000000003",
-        "email": "update@test.com",
-        "username": "update",
+        "email": "update@backend.com",
+        "username": "updateBackend",
         "password": "12345678"
       }
       """
@@ -17,7 +17,7 @@ Feature: Update a existing customer
     Given I send a POST request to "/public/customer" with body:
       """
       {
-        "email": "update@test.com",
+        "email": "update@backend.com",
         "password": "12345678"
       }
       """
@@ -26,8 +26,8 @@ Feature: Update a existing customer
       """
       {
         "id": "00000000-0000-4000-0000-000000000003",
-        "email": "update@test.com",
-        "username": "update"
+        "email": "update@backend.com",
+        "username": "updateBackend"
       }
       """
 
@@ -35,8 +35,8 @@ Feature: Update a existing customer
     Given I send a PATCH request to "/auth/customer" with body:
       """
       {
-        "email": "updated@test.com",
-        "username": "updated",
+        "email": "updated@backend.com",
+        "username": "updatedBackend",
         "currentPassword": "12345678",
         "updatedPassword": "87654321"
       }
@@ -49,8 +49,8 @@ Feature: Update a existing customer
     Then I send a PATCH request to "/auth/customer" with body:
       """
       {
-        "email": "updated@test.com",
-        "username": "updated",
+        "email": "updated@backend.com",
+        "username": "updatedBackend",
         "currentPassword": "12345678",
         "updatedPassword": "87654321"
       }

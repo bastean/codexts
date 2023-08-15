@@ -19,10 +19,6 @@
 	});
 </script>
 
-<svelte:head>
-	<title>codexts</title>
-</svelte:head>
-
 {#if isNotMounted}
 	<div
 		out:fade

@@ -30,11 +30,11 @@ Then('the page title should be {string}', async (title: string) => {
 });
 
 Then('I click the {string} tab', async (name: string) => {
-	await page.getByRole('radio', { name }).check();
+	await page.getByLabel(name).click();
 });
 
 Then('I fill the {string} with {string}', async (placeholder: string, value: string) => {
-	await page.getByPlaceholder(placeholder).fill(value);
+	await page.getByPlaceholder(placeholder, { exact: true }).fill(value);
 });
 
 Then('I click the {string} button', async (name: string) => {
@@ -43,6 +43,10 @@ Then('I click the {string} button', async (name: string) => {
 
 Then('I see {string} notification', async (message: string) => {
 	await expect(page.getByText(message, { exact: true })).toBeVisible({ timeout: 60 * 1000 });
+});
+
+Then('I see {string} title', async (name: string) => {
+	await expect(page.getByRole('heading', { name })).toBeVisible({ timeout: 60 * 1000 });
 });
 
 AfterAll(async () => {

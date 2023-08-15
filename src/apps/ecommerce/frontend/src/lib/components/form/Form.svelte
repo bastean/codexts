@@ -3,9 +3,7 @@
 	import { validator } from '@felte/validator-yup';
 	import { createForm } from 'felte';
 	import { setContext } from 'svelte';
-
-	import { showErrorNotification } from '$lib/stores/notification/ErrorNotification';
-	import { showSuccessNotification } from '$lib/stores/notification/SuccessNotification';
+	import { toast } from 'svelte-sonner';
 
 	export let schemaToValidate;
 	export let onSubmitHandler: (values: unknown) => Promise<string | void>;
@@ -21,7 +19,7 @@
 		},
 		onSuccess(success) {
 			if (onSuccessHandler === null && success !== undefined) {
-				showSuccessNotification.set(success as string);
+				toast.success(success as string);
 			}
 
 			if (onSuccessHandler !== null) {
@@ -31,7 +29,7 @@
 		onError(error) {
 			if (onErrorHandler === null && error !== undefined) {
 				const { response } = error as { response: { data: { message: string } } };
-				showErrorNotification.set(response.data.message);
+				toast.error(response.data.message);
 			}
 
 			if (onErrorHandler !== null) {

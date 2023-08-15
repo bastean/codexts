@@ -28,7 +28,7 @@ export const CustomerPatchController: Controller = async (
 			currentPassword,
 			updatedPassword
 		});
-		res.status(httpStatus.OK).json();
+		res.status(httpStatus.OK).send();
 	} catch (error) {
 		next(error);
 	}

@@ -5,9 +5,8 @@
 
 	import { afterUpdate, onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import { Toaster } from 'svelte-sonner';
 	import { themeChange } from 'theme-change';
-
-	import Notification from '$lib/components/notification/Notification.svelte';
 
 	let isNotMounted = true;
 
@@ -20,6 +19,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>codexts</title>
+</svelte:head>
+
 {#if isNotMounted}
 	<div
 		out:fade
@@ -29,10 +32,14 @@
 	</div>
 {/if}
 
-<Notification />
+<Toaster
+	position="top-center"
+	closeButton
+	richColors
+/>
 
-<main class="container mx-auto flex h-screen flex-col overflow-x-auto overflow-y-hidden">
-	<div class="flex w-full items-center justify-end p-2">
+<main class="container mx-auto flex h-screen flex-col overflow-x-hidden overflow-y-auto">
+	<div class="flex w-full items-center justify-end p-2 mb-8">
 		<select
 			data-choose-theme
 			class="select select-ghost"

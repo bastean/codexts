@@ -1,5 +1,6 @@
 import { HTTPClient } from '../../../utils/HTTPClient';
 import { CustomerJWTStore } from '../stores/CustomerJWTStore';
+import { CustomerStore } from '../stores/CustomerStore';
 
 type Customer = {
 	email: string;
@@ -12,10 +13,12 @@ type Response = {
 	username: string;
 };
 
-export const onSubmitHandler = async (customer: unknown): Promise<void> => {
+export const onSubmitHandler = async (inputs: unknown): Promise<void> => {
 	const response = await HTTPClient.post<Response>('/public/customer', {
-		...(customer as Customer)
+		...(inputs as Customer)
 	});
 
 	CustomerJWTStore.set(response.headers.authorization as string);
+
+	CustomerStore.set(response.data);
 };

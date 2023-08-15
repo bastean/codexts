@@ -15,9 +15,9 @@ const getJWT = (req: Request): string => {
 };
 
 export const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
-	const isNotAnAuthURL = !req.originalUrl.includes('auth');
+	const isNotAnAuthEndpoint = !req.originalUrl.includes('auth');
 
-	if (isNotAnAuthURL) return next();
+	if (isNotAnAuthEndpoint) return next();
 
 	const tokenFromRequest = getJWT(req);
 

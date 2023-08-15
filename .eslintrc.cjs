@@ -128,7 +128,6 @@ module.exports = {
                   */
 				'import/no-mutable-exports': 'off',
 				'import/no-unresolved': 'off',
-				'import/extensions': 'off',
 				'import/no-duplicates': 'off'
 			}
 		},
@@ -214,6 +213,7 @@ module.exports = {
 		/*
 		 *  'import' - Style guide
 		 */
+		'import/extensions': 'off', //! Airbnb - Overwritten
 		'import/order': [
 			//! Airbnb - Overwritten
 			'error',

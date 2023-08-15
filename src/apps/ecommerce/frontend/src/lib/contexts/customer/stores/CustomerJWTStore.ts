@@ -1,15 +1,6 @@
-export class CustomerJWTStore {
-	private static readonly key: string = 'codexts-jwt-customer';
+import { persist, createLocalStorage } from '@macfja/svelte-persistent-store';
+import { writable } from 'svelte/store';
 
-	public static set(jwt: string): void {
-		localStorage.setItem(this.key, jwt);
-	}
+const key = 'codexts-jwt';
 
-	public static get(): string {
-		return localStorage.getItem(this.key) ?? '';
-	}
-
-	public static remove(): void {
-		localStorage.removeItem(this.key);
-	}
-}
+export const CustomerJWTStore = persist(writable<string | null>(null), createLocalStorage(), key);

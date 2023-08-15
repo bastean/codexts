@@ -6,6 +6,7 @@
 	export let name: string;
 	export let type = 'text';
 	export let placeholder: string;
+	export let value: string | undefined = '';
 
 	interface Input {
 		[key: string]: null | string[];
@@ -13,7 +14,6 @@
 
 	const errors: Readable<Input> = getContext('errors');
 
-	let value: string;
 	let hasNotErrors: undefined | null | string[];
 	let hasBlurValidation: boolean = false;
 	let hasKeyupValidation: boolean = false;

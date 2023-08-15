@@ -5,8 +5,8 @@
 	import { CustomerInputSchema } from '$lib/contexts/customer/schemas/CustomerInputSchema';
 
 	const schemaToValidate = CustomerInputSchema.create({
-		email: CustomerInputSchema.email().required(),
-		password: CustomerInputSchema.password().required()
+		email: CustomerInputSchema.email(),
+		password: CustomerInputSchema.password()
 	});
 </script>
 

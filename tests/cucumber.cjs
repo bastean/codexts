@@ -1,5 +1,4 @@
 const common = {
-	publishQuiet: true,
 	formatOptions: { snippetInterface: 'synchronous' }
 };
 

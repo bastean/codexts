@@ -10,7 +10,7 @@
 
 <div align="center">
 
-> Example project applying Hexagonal Architecture, Domain-Driven Design (DDD), Command Query Responsibility Segregation (CQRS), Behavior-Driven Development (BDD), Continuous Integration (CI), Docker and more... in TypeScript
+> Example CRUD project applying Hexagonal Architecture, Domain-Driven Design (DDD), Command Query Responsibility Segregation (CQRS), Behavior-Driven Development (BDD), Continuous Integration (CI), and more... in TypeScript
 
 </div>
 

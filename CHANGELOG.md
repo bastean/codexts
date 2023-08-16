@@ -1,5 +1,26 @@
 # Changelog
 
+## [3.0.0](https://github.com/bastean/codexts/compare/v2.1.1...v3.0.0) (2023-08-16)
+
+### ⚠ BREAKING CHANGES
+
+- **readme:** CRUD functionality with Authentication and Password Hashing
+
+### Features
+
+- **context|backend:** add crud functionality ([850e8c2](https://github.com/bastean/codexts/commit/850e8c2966deabcd196070ebe4cac573d51d89c3))
+- **context:** add password verification on update and delete ([7cf09da](https://github.com/bastean/codexts/commit/7cf09daa624f7658d760d9cd6298d68893a43cf7))
+- **frontend:** add auth crud functionality ([ad75ef4](https://github.com/bastean/codexts/commit/ad75ef43f780b590b8f306148ef3325ea55af19d))
+- **frontend:** add public crud functionality ([2655df5](https://github.com/bastean/codexts/commit/2655df526cc387e178694801ec0139b713fcff52))
+
+### Bug Fixes
+
+- **deps:** upgrade workspaces dependencies ([0be19dc](https://github.com/bastean/codexts/commit/0be19dc13a85f0a5edb0263ec1c273b3dce8c16f))
+
+### Documentation
+
+- **readme:** update description ([6c6e7fa](https://github.com/bastean/codexts/commit/6c6e7fa1a48e1ef1a912c671c41026e85fdc8db2))
+
 ## [2.1.1](https://github.com/bastean/codexts/compare/v2.1.0...v2.1.1) (2023-07-28)
 
 ### Bug Fixes

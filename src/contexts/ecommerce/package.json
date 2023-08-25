@@ -24,7 +24,7 @@
 		"convict-format-with-moment": "6.2.0",
 		"convict-format-with-validator": "6.2.0",
 		"jsonwebtoken": "9.0.1",
-		"mongoose": "7.4.3",
+		"mongoose": "7.4.5",
 		"validator": "13.11.0",
 		"winston": "3.10.0",
 		"winston-daily-rotate-file": "4.7.1"

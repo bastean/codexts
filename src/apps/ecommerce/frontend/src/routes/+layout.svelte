@@ -34,8 +34,8 @@
 	richColors
 />
 
-<main class="container mx-auto flex h-screen flex-col overflow-x-hidden overflow-y-auto">
-	<div class="flex w-full items-center justify-end p-2 mb-8">
+<main class="container mx-auto flex h-screen flex-col overflow-y-auto overflow-x-hidden">
+	<div class="mb-8 flex w-full items-center justify-end p-2">
 		<select
 			data-choose-theme
 			class="select select-ghost"

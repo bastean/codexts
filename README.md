@@ -75,6 +75,20 @@ Install required
 npm start
 ```
 
+## Screenshots
+
+<div align="center">
+
+<img src="docs/readme/codexts-desktop-welcome.png" />
+
+<img src="docs/readme/codexts-desktop-dashboard.png" />
+
+<img width="49%" src="docs/readme/codexts-mobile-welcome.png" />
+
+<img width="49%" src="docs/readme/codexts-mobile-dashboard.png" />
+
+</div>
+
 ## License
 
 - [MIT](LICENSE)

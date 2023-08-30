@@ -1,4 +1,5 @@
 import { CustomerNotExistError } from '../../domain/errors/CustomerNotExistError';
+import { isCustomerPasswordInvalid } from '../../domain/services/isCustomerPasswordInvalid';
 
 import type { Customer } from '../../domain/aggregate/Customer';
 import type { CustomerHashing } from '../../domain/models/CustomerHashing';
@@ -13,14 +14,12 @@ export class CustomerLogin {
 	) {}
 
 	public async run(email: CustomerEmail, password: CustomerPassword): Promise<Customer> {
-		const registeredCustomer = await this.repository.search({ email });
+		const isCustomerRegistered = await this.repository.search({ email });
 
-		if (!registeredCustomer) throw new CustomerNotExistError('Email not found');
+		if (!isCustomerRegistered) throw new CustomerNotExistError('Email not found');
 
-		if (this.hashing.isNotEqual(password.value, registeredCustomer.password.value)) {
-			throw new CustomerNotExistError('Incorrect Password');
-		}
+		isCustomerPasswordInvalid(this.hashing, password.value, isCustomerRegistered.password.value);
 
-		return Promise.resolve(registeredCustomer);
+		return Promise.resolve(isCustomerRegistered);
 	}
 }

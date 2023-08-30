@@ -1,5 +1,5 @@
-import { CustomerAlreadyExistError } from '../../domain/errors/CustomerAlreadyExistError';
 import { CustomerNotExistError } from '../../domain/errors/CustomerNotExistError';
+import { isCustomerPasswordInvalid } from '../../domain/services/isCustomerPasswordInvalid';
 import { CustomerEmail } from '../../domain/valueObjects/CustomerEmail';
 import { CustomerId } from '../../domain/valueObjects/CustomerId';
 import { CustomerPassword } from '../../domain/valueObjects/CustomerPassword';
@@ -21,44 +21,27 @@ export class CustomerUpdate {
 		currentPassword?: string,
 		updatedPassword?: string
 	): Promise<void> {
-		const customerAlreadyRegistered = await this.repository.search({ id: new CustomerId(id) });
+		const isCustomerRegistered = await this.repository.search({ id: new CustomerId(id) });
 
-		if (!customerAlreadyRegistered) throw new CustomerNotExistError('Not found');
-
-		const isCustomerEmailAlreadyRegistered =
-			email !== undefined &&
-			(await this.repository.search({ email: new CustomerEmail(email) })) !== undefined;
-
-		if (isCustomerEmailAlreadyRegistered) {
-			throw new CustomerAlreadyExistError('Email already registered');
-		}
-
-		const isCustomerUsernameAlreadyRegistered =
-			username !== undefined &&
-			(await this.repository.search({ username: new CustomerUsername(username) })) !== undefined;
-
-		if (isCustomerUsernameAlreadyRegistered) {
-			throw new CustomerAlreadyExistError('Username already registered');
-		}
+		if (!isCustomerRegistered) throw new CustomerNotExistError('Id not found');
 
 		const isCustomerPasswordUpdated = updatedPassword !== undefined;
-		const isCustomerCurrentPasswordInvalid = this.hashing.isNotEqual(
-			currentPassword ?? '',
-			customerAlreadyRegistered.password.value
-		);
 
-		if (isCustomerPasswordUpdated && isCustomerCurrentPasswordInvalid) {
-			throw new CustomerNotExistError('Incorrect Password');
+		if (isCustomerPasswordUpdated) {
+			isCustomerPasswordInvalid(
+				this.hashing,
+				currentPassword ?? '',
+				isCustomerRegistered.password.value
+			);
 		}
 
-		await this.repository.update({
+		const customerValuesToUpdate = {
 			id: new CustomerId(id).value,
-			email: email !== undefined ? new CustomerEmail(email).value : email,
-			username: username !== undefined ? new CustomerUsername(username).value : username,
-			password:
-				updatedPassword !== undefined
-					? new CustomerPassword(updatedPassword).value
-					: updatedPassword
-		});
+			email: email !== undefined ? new CustomerEmail(email).value : undefined,
+			username: username !== undefined ? new CustomerUsername(username).value : undefined,
+			password: isCustomerPasswordUpdated ? new CustomerPassword(updatedPassword).value : undefined
+		};
+
+		await this.repository.update(customerValuesToUpdate);
 	}
 }

@@ -1,4 +1,5 @@
 import { CustomerNotExistError } from '../../domain/errors/CustomerNotExistError';
+import { isCustomerPasswordInvalid } from '../../domain/services/isCustomerPasswordInvalid';
 
 import type { CustomerHashing } from '../../domain/models/CustomerHashing';
 import type { CustomerRepository } from '../../domain/repository/CustomerRepository';
@@ -12,13 +13,11 @@ export class CustomerDelete {
 	) {}
 
 	public async run(id: CustomerId, password: CustomerPassword): Promise<void> {
-		const registeredCustomer = await this.repository.search({ id });
+		const isCustomerRegistered = await this.repository.search({ id });
 
-		if (!registeredCustomer) throw new CustomerNotExistError('Id not found');
+		if (!isCustomerRegistered) throw new CustomerNotExistError('Id not found');
 
-		if (this.hashing.isNotEqual(password.value, registeredCustomer.password.value)) {
-			throw new CustomerNotExistError('Incorrect Password');
-		}
+		isCustomerPasswordInvalid(this.hashing, password.value, isCustomerRegistered.password.value);
 
 		await this.repository.delete(id);
 	}

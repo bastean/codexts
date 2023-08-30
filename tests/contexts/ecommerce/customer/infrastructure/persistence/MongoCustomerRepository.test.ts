@@ -1,3 +1,4 @@
+import { CustomerAlreadyExistError } from 'codexts-contexts-ecommerce/customer/domain/errors/CustomerAlreadyExistError';
 import { MongoCustomerRepository } from 'codexts-contexts-ecommerce/customer/infrastructure/persistence/mongo/MongoCustomerRepository';
 import { ConvictConfig } from 'codexts-contexts-ecommerce/shared/infrastructure/config/convict/ConvictConfig';
 import { connect, disconnect } from 'mongoose';
@@ -22,6 +23,16 @@ describe('Mongo Customer Repository', () => {
 
 			await repository.save(customer);
 		});
+
+		it('should throw error if customer is already registered', async () => {
+			await expect(async () => {
+				const customer = CustomerMother.random();
+
+				await repository.save(customer);
+
+				await repository.save(customer);
+			}).rejects.toThrow(CustomerAlreadyExistError);
+		});
 	});
 
 	describe('#update', () => {
@@ -33,6 +44,25 @@ describe('Mongo Customer Repository', () => {
 			const customerUpdate = CustomerMother.randomExceptId(customer.id.value);
 
 			await repository.update(customerUpdate.toPrimitives());
+		});
+
+		it('should throw error if customer updates are already registered', async () => {
+			await expect(async () => {
+				const customerAlreadyRegistered = CustomerMother.random();
+				await repository.save(customerAlreadyRegistered);
+
+				const customer = CustomerMother.random();
+				await repository.save(customer);
+
+				const customerUpdate = CustomerMother.fromCommand({
+					id: customer.id.value,
+					email: customerAlreadyRegistered.email.value,
+					username: customerAlreadyRegistered.username.value,
+					password: customer.password.value
+				});
+
+				await repository.update(customerUpdate.toPrimitives());
+			}).rejects.toThrow(CustomerAlreadyExistError);
 		});
 	});
 

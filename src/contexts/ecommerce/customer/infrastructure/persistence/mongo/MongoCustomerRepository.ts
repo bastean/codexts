@@ -1,6 +1,8 @@
 import { Schema, model } from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator';
 
 import { Customer } from '../../../domain/aggregate/Customer';
+import { CustomerAlreadyExistError } from '../../../domain/errors/CustomerAlreadyExistError';
 
 import type { Nullable } from '../../../../shared/domain/types/Nullable';
 import type { CustomerHashing } from '../../../domain/models/CustomerHashing';
@@ -27,10 +29,33 @@ export class MongoCustomerRepository implements CustomerRepository {
 		private readonly collectionName: string = 'customers'
 	) {
 		this.CustomerSchema = new Schema<CustomerDocument>({
-			id: { type: String, required: true, unique: true },
-			email: { type: String, required: true, unique: true },
-			username: { type: String, required: true, unique: true },
-			password: { type: String, required: true }
+			id: {
+				type: String,
+				required: true,
+				unique: true,
+				uniqueCaseInsensitive: true
+			},
+			email: {
+				type: String,
+				required: true,
+				unique: true,
+				uniqueCaseInsensitive: true
+			},
+			username: {
+				type: String,
+				required: true,
+				unique: true,
+				uniqueCaseInsensitive: true
+			},
+			password: {
+				type: String,
+				required: true
+			}
+		});
+
+		this.CustomerSchema.plugin(uniqueValidator, {
+			type: CustomerAlreadyExistError,
+			message: '{VALUE} already registered'
 		});
 
 		this.CustomerCollection = model<CustomerDocument>(this.collectionName, this.CustomerSchema);
@@ -40,7 +65,11 @@ export class MongoCustomerRepository implements CustomerRepository {
 		const primitiveCustomer = customer.toPrimitives();
 		const passwordHashed = this.hashing.hash(primitiveCustomer.password);
 
-		await new this.CustomerCollection({ ...primitiveCustomer, password: passwordHashed }).save();
+		try {
+			await new this.CustomerCollection({ ...primitiveCustomer, password: passwordHashed }).save();
+		} catch (error: unknown) {
+			throw new CustomerAlreadyExistError(this.getOneErrorMessageAtTime(error));
+		}
 	}
 
 	public async update(customer: {
@@ -49,13 +78,20 @@ export class MongoCustomerRepository implements CustomerRepository {
 		username?: string;
 		password?: string;
 	}): Promise<void> {
-		const primitiveCustomer = { ...customer };
+		const { id, ...primitiveCustomer } = customer;
 
 		if (primitiveCustomer.password !== undefined) {
 			primitiveCustomer.password = this.hashing.hash(primitiveCustomer.password);
 		}
 
-		await this.CustomerCollection.findOneAndUpdate({ id: customer.id }, primitiveCustomer);
+		try {
+			await this.CustomerCollection.findOneAndUpdate({ id }, primitiveCustomer, {
+				runValidators: true,
+				context: 'query'
+			});
+		} catch (error: unknown) {
+			throw new CustomerAlreadyExistError(this.getOneErrorMessageAtTime(error));
+		}
 	}
 
 	public async delete(id: CustomerId): Promise<void> {
@@ -87,5 +123,9 @@ export class MongoCustomerRepository implements CustomerRepository {
 		}
 
 		return customer;
+	}
+
+	private getOneErrorMessageAtTime(error: unknown): string {
+		return Object.values((error as { errors: { message: string }[] }).errors)[0].message;
 	}
 }

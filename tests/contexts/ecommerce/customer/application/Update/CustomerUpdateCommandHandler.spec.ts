@@ -1,6 +1,5 @@
 import { CustomerUpdate } from 'codexts-contexts-ecommerce/customer/application/Update/CustomerUpdate';
 import { CustomerUpdateCommandHandler } from 'codexts-contexts-ecommerce/customer/application/Update/CustomerUpdateCommandHandler';
-import { CustomerAlreadyExistError } from 'codexts-contexts-ecommerce/customer/domain/errors/CustomerAlreadyExistError';
 import { InvalidValueError } from 'codexts-contexts-ecommerce/shared/domain/valueObjects/InvalidValueError';
 
 import { CustomerHashingMock } from '../../__mocks__/infrastructure/cryptographic/CustomerHashingMock';
@@ -31,18 +30,5 @@ describe('Customer Update Command Handler', () => {
 
 	it('should throw error if customer is invalid', async () => {
 		expect(() => CustomerUpdateCommandMother.invalid()).toThrow(InvalidValueError);
-	});
-
-	it('should throw error if customer is already registered', async () => {
-		await expect(async () => {
-			hashing = new CustomerHashingMock();
-			repository = new CustomerRepositoryMock({ search: { canReturnCustomerNotFound: false } });
-			update = new CustomerUpdate(repository, hashing);
-			handler = new CustomerUpdateCommandHandler(update);
-
-			const command = CustomerUpdateCommandMother.random();
-
-			await handler.handle(command);
-		}).rejects.toThrow(CustomerAlreadyExistError);
 	});
 });

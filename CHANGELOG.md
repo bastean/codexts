@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.0.2](https://github.com/bastean/codexts/compare/v3.0.1...v3.0.2) (2023-08-30)
+
+### Bug Fixes
+
+- **context:** change responsibility for throwing errors ([e3ee07d](https://github.com/bastean/codexts/commit/e3ee07d48a1173dd52740e27015ac01d932419ca))
+
 ## [3.0.1](https://github.com/bastean/codexts/compare/v3.0.0...v3.0.1) (2023-08-26)
 
 ### Bug Fixes
